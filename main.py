@@ -87,7 +87,7 @@ class Facebook_messenger(Client):
 
 
 def start_bot():
-    cookies = json.loads(open("cookies.json", "r").read())
+    cookies = json.loads(open("cookies/cookies.json", "r").read())
     client = Facebook_messenger("",
                                 "", session_cookies=cookies)
     print(client.isLoggedIn())
@@ -106,9 +106,10 @@ def main():
     print(logo)
     print(line)
     print("\033[1;92m║ \033[1;91m1. \033[1;94m—> \033[1;92mStart Chat-Bot")
-    print("\033[1;92m║ \033[1;91m2. \033[1;94m—> \033[1;92mLogin/Cookies")
+    print("\033[1;92m║ \033[1;91m2. \033[1;94m—> \033[1;92mAdd Cookies")
     print("\033[1;92m║ \033[1;91m3. \033[1;94m—> \033[1;92mView Cookies")
-    print("\033[1;92m║ \033[1;91m4. \033[1;94m—> \033[1;92mUpdate")
+    print("\033[1;92m║ \033[1;91m4. \033[1;94m—> \033[1;92mLogin")
+    print("\033[1;92m║ \033[1;91m5. \033[1;94m—> \033[1;92mUpdate")
     print("\033[1;92m║ \033[1;91m0. \033[1;94m—> \033[1;93mExit")
     home_pick()
 
@@ -120,7 +121,7 @@ def home_pick():
         return
     if p == "2":
         pass
-    elif p == "4":
+    elif p == "5":
         os.system("git pull")
         os.system("python3 main.py")
 
