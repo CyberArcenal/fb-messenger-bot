@@ -315,11 +315,18 @@ class Facebook_messenger(Client):
                                 thread_type=thread_type)
             else:
                 # Simulate typing
-                self.setTypingStatus(thread_id, typing=True)
+                self.setTypingStatus(TypingStatus.TYPING, thread_id=thread_id, thread_type=thread_type)
                 reply = mybot.get_response(msg)
                 # Stop simulating typing
-                time.sleep(3)
-                self.setTypingStatus(thread_id, typing=False)
+                if len(str(reply)) < 15:
+                    time.sleep(2)
+                elif len(str(reply)) > 20 and len(str(reply)) < 30:
+                    time.sleep(3)
+                else:
+                    time.sleep(4)
+                self.setTypingStatus(TypingStatus.STOPPED, thread_id=thread_id, thread_type=thread_type)
+                if str(reply)=="" or reply == None:
+                    return
                 self.send(Message(text=reply), thread_id=thread_id,
                           thread_type=thread_type)
         except Exception as e:
@@ -330,7 +337,6 @@ class Facebook_messenger(Client):
             msg = check_message(
                 message_object, author_id=author_id, uid=self.uid)
             if msg:
-                print(msg)
                 # Perform actions based on the message content
                 self.message_proccessing_unit(
                     msg=msg, thread_id=thread_id, thread_type=thread_type)
