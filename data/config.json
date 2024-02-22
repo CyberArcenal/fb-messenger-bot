@@ -1,0 +1,181 @@
+{
+    "Greetings": [
+        {
+            "patterns": [
+                "hi"
+            ],
+            "response": [
+                "hello po?",
+                "hello",
+                "hello po",
+                "hi den po",
+                "po?",
+                "kamusta",
+                "hi?",
+                "hi po?",
+                "hi",
+                "hi po",
+                "hello?"
+            ],
+            "single_response": false,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hi",
+                "po?"
+            ],
+            "response": [
+                "hi po",
+                "hello po",
+                "hi",
+                "hi den po"
+            ],
+            "single_response": false,
+            "required_words": []
+        }
+    ],
+    "Goodbye": [
+        {
+            "patterns": [
+                "bye"
+            ],
+            "response": [
+                "ingat"
+            ],
+            "single_response": true,
+            "required_words": []
+        }
+    ],
+    "General Inquiries": [],
+    "Help": [
+        {
+            "patterns": [
+                "hi"
+            ],
+            "response": [
+                "hello how can i help you?"
+            ],
+            "single_response": true,
+            "required_words": []
+        }
+    ],
+    "Conversations": [
+        {
+            "patterns": [
+                "ano",
+                "gawa",
+                "mo",
+                "po"
+            ],
+            "response": [
+                "wala po andito lang saamin, ikaw po ba?",
+                "wala po, ikaw po ba?",
+                "wala po e.",
+                "andito lang po.",
+                "naka upo lang, ikaw ba?",
+                "naka upo, ikaw po?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "wala",
+                "lang"
+            ],
+            "response": [
+                "bakit naman?",
+                "bakit?",
+                "bat wala?",
+                "wala lang?",
+                "ganon ba",
+                "ganon",
+                "ahh ganon po ba.",
+                "ganon po.",
+                "ganon, ano gawa mo?",
+                "gawa mo po?",
+                "ano gawa mo po?",
+                "ginagawa mo ngayon?",
+                "ano ginagawa mo ngayon?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "mahal"
+            ],
+            "response": [
+                "yung ano ang mahal?",
+                "ano pong mahal?",
+                "mahal?",
+                "bakit po?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "kamusta"
+            ],
+            "response": [
+                "okey lang, ikaw?",
+                "okay lang.",
+                "okey lang naman."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "yow"
+            ],
+            "response": [
+                "yu",
+                "hey hehe",
+                "hey jeje",
+                "hey?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ano",
+                "panagalan",
+                "mo",
+                "po?"
+            ],
+            "response": [
+                "Darius po",
+                "ang pangalan ko ay Darius",
+                "Darius po ang name ko, ikaw po ba ano name mo?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "i",
+                "love",
+                "you",
+                "u"
+            ],
+            "response": [
+                "love you too",
+                "love you den",
+                "love you",
+                "love you more",
+                "loves loves!",
+                "jejejje"
+            ],
+            "single_response": true,
+            "required_words": [
+                "love",
+                "you",
+                "u"
+            ]
+        }
+    ]
+}
