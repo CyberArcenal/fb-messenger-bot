@@ -18,7 +18,7 @@ from functions.logger import log, log_error
 
 from functions.soup import find_input_fields, find_url, \
     get_input_data, create_form, create_form_2fa, \
-    get_page_title, get_title_dexcription, get_title_message
+    get_page_title, get_title_dexcription, get_title_message, get_youtube_link
 from tools.tools import get_tag, get_patterns, get_response_patterns, get_required_words, save_json
 import mybot
 from icecream import ic
@@ -267,6 +267,7 @@ def Generate_Cookies():
     login = Facebook(user, userpass)
     login.login()
 
+
 def check_message(message_object, author_id, uid):
     if (author_id == uid):
         return None
@@ -289,6 +290,33 @@ def check_message(message_object, author_id, uid):
 
 
 class Facebook_messenger(Client):
+    def TypingStatusStart(self, thread_id="", thread_type="", sleep: int = 2):
+        self.setTypingStatus(TypingStatus.TYPING,
+                             thread_id=thread_id, thread_type=thread_type)
+        time.sleep(sleep)
+        return
+
+    def TypingStatusStop(self, thread_id="", thread_type=""):
+        self.setTypingStatus(TypingStatus.STOPPED,
+                             thread_id=thread_id, thread_type=thread_type)
+        return
+
+    def download_on_youtube(self, message, thread_type, thread_id):
+        final_link = get_youtube_link(message=message)
+        if final_link != None:
+            self.TypingStatusStart(thread_id=thread_id,
+                                   thread_type=thread_type, sleep=2)
+            self.TypingStatusStop(thread_id=thread_id, thread_type=thread_type)
+            self.sendRemoteFiles(
+                file_urls=final_link, message=None, thread_id=thread_id, thread_type=thread_type)
+        else:
+            self.TypingStatusStart(thread_id=thread_id,
+                                   thread_type=thread_type, sleep=2)
+            reply = "Sorry something went wrong when i browsing your link:("
+            self.TypingStatusStop(thread_id=thread_id, thread_type=thread_type)
+            self.send(Message(text=reply), thread_id=thread_id,
+                      thread_type=thread_type)
+
     def searchUser(self, msg: str, thread_id, thread_type):
         try:
             name = " ".join(msg.split()[2:4])
@@ -307,15 +335,56 @@ class Facebook_messenger(Client):
                           thread_type=thread_type)
         except Exception as e:
             log_error(e)
+    ###################### MESSAGE PROCESS CENTER#############################
 
     def message_proccessing_unit(self, msg: str, thread_id, thread_type):
         try:
             if "search" in msg and "user" in msg or "search" in msg and "friend" in msg:
                 self.searchUser(msg=msg, thread_id=thread_id,
                                 thread_type=thread_type)
+            elif ("download youtube" in msg.lower()):
+                self.download_on_youtube(
+                    message=msg, thread_id=thread_id, thread_type=thread_type)
+            elif ("search image" in msg):
+                imageSearch(self, msg.lower())
+
+            elif ("program to" in msg.lower()):
+                programming_solution(self, msg)
+            elif ("translate" in msg.lower()):
+                reply = translator(self, msg, msg.split()[-1])
+
+                sendQuery()
+            elif "weather of" in msg.lower():
+                indx = msg.index("weather of")
+                query = msg[indx+11:]
+                reply = weather(query)
+                sendQuery()
+            elif ("calculus" in msg.lower()):
+                stepWiseCalculus(" ".join(msg.split(" ")[1:]))
+            elif ("algebra" in msg.lower()):
+                stepWiseAlgebra(" ".join(msg.split(" ")[1:]))
+            elif ("query" in msg.lower()):
+                stepWiseQueries(" ".join(msg.split(" ")[1:]))
+
+            elif "find" in msg.lower() or "solve" in msg.lower() or "evaluate" in msg.lower() or "calculate" in msg.lower() or "value" in msg.lower() or "convert" in msg.lower() or "simplify" in msg.lower() or "generate" in msg.lower():
+                app_id = "Y98QH3-24PWX83VGA"
+                client = wolframalpha.Client(app_id)
+                query = msg.split()[1:]
+                res = client.query(' '.join(query))
+                answer = next(res.results).text
+                reply = f'Answer: {answer.replace("sqrt", "√")}'
+                sendQuery()
+            elif ("mute conversation" in msg.lower()):
+                try:
+                    self.muteThread(mute_time=-1, thread_id=author_id)
+                    reply = "muted 🔕"
+                    sendQuery()
+                except:
+                    pass
             else:
                 # Simulate typing
-                self.setTypingStatus(TypingStatus.TYPING, thread_id=thread_id, thread_type=thread_type)
+                self.setTypingStatus(
+                    TypingStatus.TYPING, thread_id=thread_id, thread_type=thread_type)
                 reply = mybot.get_response(msg)
                 # Stop simulating typing
                 if len(str(reply)) < 15:
@@ -324,8 +393,9 @@ class Facebook_messenger(Client):
                     time.sleep(3)
                 else:
                     time.sleep(4)
-                self.setTypingStatus(TypingStatus.STOPPED, thread_id=thread_id, thread_type=thread_type)
-                if str(reply)=="" or reply == None:
+                self.setTypingStatus(
+                    TypingStatus.STOPPED, thread_id=thread_id, thread_type=thread_type)
+                if str(reply) == "" or reply == None:
                     return
                 self.send(Message(text=reply), thread_id=thread_id,
                           thread_type=thread_type)
@@ -343,6 +413,117 @@ class Facebook_messenger(Client):
         except Exception as e:
             print(f"Error in onMessage: {e}")
         self.markAsDelivered(author_id, thread_id)
+
+    def onMessageUnsent(self, mid=None, author_id=None, thread_id=None, thread_type=None, ts=None, msg=None):
+        reply = f"You just unsent a message."
+        self.send(Message(text=reply), thread_id=thread_id,thread_type=thread_type)
+        return
+        if (author_id == self.uid):
+            pass
+        else:
+            try:
+                conn = sqlite3.connect("messages.db")
+                print("connected")
+                c = conn.cursor()
+                c.execute("""
+                SELECT * FROM "{}" WHERE mid = "{}"
+                """.format(str(author_id).replace('"', '""'), mid.replace('"', '""')))
+
+                fetched_msg = c.fetchall()
+                conn.commit()
+                conn.close()
+                unsent_msg = fetched_msg[0][1]
+
+                if ("//video.xx.fbcdn" in unsent_msg):
+
+                    if (thread_type == ThreadType.USER):
+                        reply = f"You just unsent a video"
+                        self.send(Message(text=reply), thread_id=thread_id,
+                                  thread_type=thread_type)
+                        self.sendRemoteFiles(
+                            file_urls=unsent_msg, message=None, thread_id=thread_id, thread_type=ThreadType.USER)
+                    elif (thread_type == ThreadType.GROUP):
+                        user = self.fetchUserInfo(f"{author_id}")[
+                            f"{author_id}"]
+                        username = user.name.split()[0]
+                        reply = f"{username} just unsent a video"
+                        self.send(Message(text=reply), thread_id=thread_id,
+                                  thread_type=thread_type)
+                        self.sendRemoteFiles(
+                            file_urls=unsent_msg, message=None, thread_id=thread_id, thread_type=ThreadType.GROUP)
+                elif ("//scontent.xx.fbc" in unsent_msg):
+
+                    if (thread_type == ThreadType.USER):
+                        reply = f"You just unsent an image"
+                        self.send(Message(text=reply), thread_id=thread_id,
+                                  thread_type=thread_type)
+                        self.sendRemoteFiles(
+                            file_urls=unsent_msg, message=None, thread_id=thread_id, thread_type=ThreadType.USER)
+                    elif (thread_type == ThreadType.GROUP):
+                        user = self.fetchUserInfo(f"{author_id}")[
+                            f"{author_id}"]
+                        username = user.name.split()[0]
+                        reply = f"{username} just unsent an image"
+                        self.send(Message(text=reply), thread_id=thread_id,
+                                  thread_type=thread_type)
+                        self.sendRemoteFiles(
+                            file_urls=unsent_msg, message=None, thread_id=thread_id, thread_type=ThreadType.GROUP)
+                else:
+                    if (thread_type == ThreadType.USER):
+                        reply = f"You just unsent a message:\n{unsent_msg} "
+                        self.send(Message(text=reply), thread_id=thread_id,
+                                  thread_type=thread_type)
+                    elif (thread_type == ThreadType.GROUP):
+                        user = self.fetchUserInfo(f"{author_id}")[
+                            f"{author_id}"]
+                        username = user.name.split()[0]
+                        reply = f"{username} just unsent a message:\n{unsent_msg}"
+                        self.send(Message(text=reply), thread_id=thread_id,
+                                  thread_type=thread_type)
+
+            except:
+                pass
+
+    def onColorChange(self, mid=None, author_id=None, new_color=None, thread_id=None, thread_type=ThreadType.USER, **kwargs):
+        reply = "You changed the theme ✌️😎"
+        self.send(Message(text=reply), thread_id=thread_id,
+                  thread_type=thread_type)
+
+    def onEmojiChange(self, mid=None, author_id=None, new_color=None, thread_id=None, thread_type=ThreadType.USER, **kwargs):
+        reply = "You changed the emoji 😎. Great!"
+        self.send(Message(text=reply), thread_id=thread_id,
+                  thread_type=thread_type)
+
+    def onImageChange(self, mid=None, author_id=None, new_color=None, thread_id=None, thread_type=ThreadType.USER, **kwargs):
+        reply = "This image looks nice. 💕🔥"
+        self.send(Message(text=reply), thread_id=thread_id,
+                  thread_type=thread_type)
+
+    def onNicknameChange(self, mid=None, author_id=None, new_nickname=None, thread_id=None, thread_type=ThreadType.USER, **kwargs):
+        reply = f"You just changed the nickname to {new_nickname} But why? 😁🤔😶"
+        self.send(Message(text=reply), thread_id=thread_id,
+                  thread_type=thread_type)
+
+    def onReactionRemoved(self, mid=None, author_id=None, thread_id=None, thread_type=ThreadType.USER, **kwargs):
+        reply = "You just removed reaction from the message."
+        self.send(Message(text=reply), thread_id=thread_id,
+                  thread_type=thread_type)
+
+    def onCallStarted(self, mid=None, caller_id=None, is_video_call=None, thread_id=None, thread_type=None, ts=None, metadata=None, msg=None, ** kwargs):
+        reply = "You just started a call 📞🎥"
+        self.send(Message(text=reply), thread_id=thread_id,
+                  thread_type=thread_type)
+
+    def onCallEnded(self, mid=None, caller_id=None, is_video_call=None, thread_id=None, thread_type=None, ts=None, metadata=None, msg=None, ** kwargs):
+        reply = "Bye 👋🙋‍♂️"
+        self.send(Message(text=reply), thread_id=thread_id,
+                  thread_type=thread_type)
+
+    def onUserJoinedCall(self, mid=None, joined_id=None, is_video_call=None,
+                         thread_id=None, thread_type=None, **kwargs):
+        reply = f"New user with user_id {joined_id} has joined a call"
+        self.send(Message(text=reply), thread_id=thread_id,
+                  thread_type=thread_type)
 
 
 def display_account_info(client: Client):
@@ -385,6 +566,7 @@ def pick():
     user_input = input("\033[1;92m╚═════\033[1;91m>>>\033[1;97m ")
     return str(user_input)
 
+
 def test_bot():
     os.system(clr)
     print(logo)
@@ -396,7 +578,7 @@ def test_bot():
         if user_input.lower() == 'exit':
             print("Exiting the chat.")
             break
-        
+
         bot_response = mybot.get_response(user_input)
         print(f"\033[1;92m║ Bot: {bot_response}")
     home()
@@ -441,6 +623,8 @@ def train_main():
                       single_response, required_words)
         except KeyboardInterrupt:
             home()
+
+
 def home():
     os.system(clr)
     print(logo)

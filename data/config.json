@@ -382,6 +382,82 @@
             ],
             "single_response": true,
             "required_words": []
+        },
+        {
+            "patterns": [
+                "para",
+                "kang",
+                "sira",
+                "hehehe"
+            ],
+            "response": [
+                "bat naman masisira hehe",
+                "bakit naman hehe",
+                "bakit naman po",
+                "bakit naman",
+                "ngek"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "busy",
+                "kana",
+                "yata"
+            ],
+            "response": [
+                "hindi naman e",
+                "dinaman may ginawa lang",
+                "dinaman",
+                "dinaman po",
+                "diman po",
+                "dipo",
+                "sorry naman po",
+                "sorry po, kamusta po",
+                "sorry"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Oi",
+                "Ui",
+                "oy",
+                "Oyy",
+                "oyy",
+                "uyy",
+                "hoy",
+                "hoyy"
+            ],
+            "response": [
+                "Ow",
+                "Oh",
+                "o bakit",
+                "Oh bakit po",
+                "bakit po",
+                "ano po yon?",
+                "ano po un",
+                "nupo un",
+                "ay bakit po"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hay",
+                "nako",
+                "naman"
+            ],
+            "response": [
+                "ano problema?",
+                "ano ba yon?",
+                "bakit?"
+            ],
+            "single_response": true,
+            "required_words": []
         }
     ]
 }
