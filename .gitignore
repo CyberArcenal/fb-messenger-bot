@@ -1,0 +1,7 @@
+
+*.cfg
+cookies/cookies.json
+cookies/cookiesList.json
+cookies/Referer.txt
+logs/log_data.txt
+logs/log_browser.html
