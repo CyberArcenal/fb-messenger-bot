@@ -22,6 +22,7 @@ from functions.soup import find_input_fields, find_url, \
     get_youtube_link, save_ongoing_chat, translator, weather
 from tools.tools import get_tag, get_patterns, get_response_patterns, \
     get_required_words, save_json
+from functions.search_user import get_limit
 import mybot
 from icecream import ic
 import concurrent.futures
@@ -321,12 +322,10 @@ class Facebook_messenger(Client):
                       thread_type=thread_type)
 
     def searchUser(self, msg: str, thread_id, thread_type):
+        
         try:
             name = " ".join(msg.split()[2:4])
-            try:
-                limit = int(msg.split()[4])
-            except:
-                limit = 10
+            limit = get_limit(message=msg)
             params = {"search": name, "limit": limit}
             (j,) = self.graphql_requests(
                 _graphql.from_query(_graphql.SEARCH_USER, params))
