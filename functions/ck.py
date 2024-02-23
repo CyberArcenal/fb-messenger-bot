@@ -6,6 +6,9 @@ from requests import Response
 from icecream import ic
 from .logger import log, log_error
 
+def switch_cookiefile(cookies: dict):
+    with open("cookies/cookies.json", "w") as cf:
+        json.dump(cookies, cf, indent=4)
 
 def save_cookies_in_the_list(cookies: dict, account_name: str):
     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
