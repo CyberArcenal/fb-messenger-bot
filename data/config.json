@@ -69,12 +69,19 @@
                 "po"
             ],
             "response": [
-                "wala po andito lang saamin, ikaw po ba?",
                 "wala po, ikaw po ba?",
-                "wala po e.",
+                "wala po andito lang saamin, ikaw po ba?",
+                "Mahal",
+                "Vc ba tayo? HAHAHA",
+                "Jan kanalang",
                 "andito lang po.",
+                "Condensada saka evaporada",
                 "naka upo lang, ikaw ba?",
-                "naka upo, ikaw po?"
+                "wala po e.",
+                "Sige",
+                "Adorable \u00e2\u009d\u00a4\u00ef\u00b8\u008f",
+                "naka upo, ikaw po?",
+                "Mahaltott"
             ],
             "single_response": true,
             "required_words": []
@@ -148,9 +155,11 @@
                 "po?"
             ],
             "response": [
-                "Darius po",
+                "Condensada saka evaporada",
                 "ang pangalan ko ay Darius",
-                "Darius po ang name ko, ikaw po ba ano name mo?"
+                "Darius po ang name ko, ikaw po ba ano name mo?",
+                "Darius po",
+                "Jan kanalang"
             ],
             "single_response": true,
             "required_words": []
@@ -239,11 +248,16 @@
                 "ba?"
             ],
             "response": [
-                "ganon den sayo hehe",
-                "ganon den sayo",
-                "ganon den",
+                "Mahaltott",
                 "pareho lang tayo hehe",
-                "pareho lang tayo"
+                "pareho lang tayo",
+                "Vc ba tayo? HAHAHA",
+                "Sige",
+                "ganon den sayo",
+                "ganon den sayo hehe",
+                "ganon den",
+                "Mahal",
+                "Adorable \u00e2\u009d\u00a4\u00ef\u00b8\u008f"
             ],
             "single_response": true,
             "required_words": []
@@ -335,15 +349,16 @@
                 "tayo"
             ],
             "response": [
-                "ay pakape naman",
-                "pakape",
-                "ano kape mo",
-                "ano flavor",
-                "ay pahigop hehe",
-                "pahigop hehe",
                 "patikim hehe",
-                "ano lasa?",
+                "ay pakape naman",
+                "kunin mo dine",
+                "pahigop hehe",
+                "ano flavor",
+                "pakape",
+                "ay pahigop hehe",
                 "sige lang kape kalang",
+                "ano lasa?",
+                "ano kape mo",
                 "kape lang po"
             ],
             "single_response": true,
@@ -538,6 +553,2964 @@
             ],
             "response": [
                 "ahhh hhehehe sorry"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "tae",
+                "ipot",
+                "purorot",
+                "takla"
+            ],
+            "response": [
+                "yuck",
+                "kadiri naman",
+                "yuck naman po",
+                "ay hehe yuck",
+                "iww naman",
+                "iww",
+                "kadiri"
+            ],
+            "single_response": true,
+            "required_words": [
+                "tae"
+            ]
+        },
+        {
+            "patterns": [
+                "bugok",
+                "ka"
+            ],
+            "response": [
+                "baka ikaw",
+                "ikaw yon",
+                "hindi naman",
+                "sorry naman"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "mahal",
+                "kita",
+                "sobra"
+            ],
+            "response": [
+                "mahal din kita"
+            ],
+            "single_response": true,
+            "required_words": [
+                "mahal",
+                "kita"
+            ]
+        },
+        {
+            "patterns": [
+                "putanginamo",
+                "puta",
+                "ina"
+            ],
+            "response": [
+                "wag ganon",
+                "hahaha sayo den",
+                "inamo den"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hotdog",
+                "hatdog"
+            ],
+            "response": [
+                "penge",
+                "sarap",
+                "ano luto",
+                "prito",
+                "masarap yan",
+                "ulam mo?",
+                "ahh sarap"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "manok"
+            ],
+            "response": [
+                "luto naten",
+                "ano gagawin",
+                "pang luto?",
+                "aalagaan mo?",
+                "litchon naten"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "kalapati"
+            ],
+            "response": [
+                "pang karera?",
+                "karera?",
+                "alaga mo?",
+                "pang luto?",
+                "patingin nga"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ibon"
+            ],
+            "response": [
+                "pagkain?",
+                "asan",
+                "patingin",
+                "alaga mo?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "oa",
+                "mo"
+            ],
+            "response": [
+                "hahaha bagya lang",
+                "Jan kanalang",
+                "di naman"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "tulungan",
+                "ko",
+                "lang",
+                "mag",
+                "banlaw",
+                "si",
+                "mama"
+            ],
+            "response": [
+                "Sige"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Hi",
+                "po",
+                "ang",
+                "pogi",
+                "nyo",
+                "po",
+                "pwede",
+                "kaba",
+                "mahalin?\u00f0\u009f\u0098\u00bb\u00f0\u009f\u00a4\u008d\u00f0\u009f\u0098\u0099\u00f0\u009f\u00a5\u00b0"
+            ],
+            "response": [
+                "Mahaltott",
+                "Vc ba tayo? HAHAHA",
+                "Sige",
+                "Mahal",
+                "Adorable \u00e2\u009d\u00a4\u00ef\u00b8\u008f"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Mahal",
+                "ano",
+                "bibilin"
+            ],
+            "response": [
+                "Condensada saka evaporada"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Yon",
+                "lang",
+                "ba"
+            ],
+            "response": [
+                "Oo mahal"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Mahaltott"
+            ],
+            "response": [
+                "Bkt?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Vc",
+                "ba",
+                "tayo?",
+                "HAHAHA"
+            ],
+            "response": [
+                "Mahal"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Mahal"
+            ],
+            "response": [
+                "Usap na tayo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Usap",
+                "na",
+                "tayo"
+            ],
+            "response": [
+                "Bkt"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Adoytottt"
+            ],
+            "response": [
+                "Bkt"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Hirap",
+                "pag",
+                "hnd",
+                "kita",
+                "nakaka",
+                "usap",
+                "kahit",
+                "isang",
+                "araw",
+                ":>"
+            ],
+            "response": [
+                "kunin mo dine",
+                "Ano ginagawa mo?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ano",
+                "ginagawa",
+                "mo?"
+            ],
+            "response": [
+                "Susunduin mo paba ako bukas?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Susunduin",
+                "mo",
+                "paba",
+                "ako",
+                "bukas?"
+            ],
+            "response": [
+                "kunin mo dine",
+                "Jan kanalang"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Pano",
+                "yung",
+                "gamit",
+                "dyan",
+                "sa",
+                "pag",
+                "bake,",
+                "nag",
+                "pa",
+                "order",
+                "pa",
+                "nmn",
+                "ako",
+                "linggo",
+                "yun",
+                "e"
+            ],
+            "response": [
+                "De ako pa nag gasulina?",
+                "Wala e",
+                "Jan kanalang",
+                "kunin mo dine"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Mag",
+                "gas",
+                "ako",
+                "50",
+                "balikan",
+                "kasya?"
+            ],
+            "response": [
+                "kunin mo dine",
+                "Sige dadalin kona jan lahat",
+                "Jan kanalang"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ibig",
+                "mo",
+                "sabihin",
+                "hiwalay",
+                "na?"
+            ],
+            "response": [
+                "Cge",
+                "Jan kanalang"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Anong",
+                "oras",
+                "bukas?"
+            ],
+            "response": [
+                "Ewanko",
+                "Jan kanalang"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Dyan",
+                "nlg",
+                "ako?\u00f0\u009f\u0098\u00b8"
+            ],
+            "response": [
+                "Bakit"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Dinelete",
+                "kona",
+                "para",
+                "di'ka",
+                "na",
+                "magalit"
+            ],
+            "response": [
+                "Kung di pabago bago ugali mo andito kana"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Tulog",
+                "nako",
+                "sana",
+                "ng",
+                "mahimbing",
+                "ngayon,",
+                "kinabuksan",
+                "laba\u00f0\u009f\u0098\u00b8"
+            ],
+            "response": [
+                "Ikaw may problema"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ano",
+                "yan",
+                "dinelete",
+                "mo,",
+                "inaantok",
+                "na",
+                "kase",
+                "ko"
+            ],
+            "response": [
+                "Wala"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ayaw",
+                "mo",
+                "yata",
+                "ng",
+                "goodnight",
+                "hehe"
+            ],
+            "response": [
+                "hindi naman",
+                "Jan kanalang"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ni",
+                "like",
+                "mo",
+                "lng",
+                "e"
+            ],
+            "response": [
+                "kunin mo dine",
+                "Matulog kana",
+                "Jan kanalang"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Gabi",
+                "na",
+                "den",
+                "e,",
+                "malapit",
+                "na",
+                "mag",
+                "12umaga",
+                "na",
+                "yun"
+            ],
+            "response": [
+                "Baka 2:30pm ulit ako magising bukas",
+                "kunin mo dine"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ayy",
+                "bakit?"
+            ],
+            "response": [
+                "Cge"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Morning"
+            ],
+            "response": [
+                "Nyek",
+                "Morning"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Pa",
+                "sundo",
+                "nako,",
+                "dyan",
+                "naba",
+                "mutor"
+            ],
+            "response": [
+                "Wala e",
+                "kunin mo dine"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Sunduin",
+                "moba",
+                "ako",
+                "pag",
+                "andyan",
+                "na",
+                "mutor?"
+            ],
+            "response": [
+                "kunin mo dine",
+                "Kung may gas",
+                "Jan kanalang"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Sunduin",
+                "mo",
+                "nako,",
+                "lapit",
+                "na",
+                "mag",
+                "10",
+                "andyan",
+                "na",
+                "non",
+                "yon"
+            ],
+            "response": [
+                "Kung may gas",
+                "Wala e",
+                "Jan kanalang"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Di",
+                "ako",
+                "nandidiri"
+            ],
+            "response": [
+                "ganon",
+                "Jan kanalang",
+                "kunin mo dine"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Di",
+                "galit",
+                "yung",
+                "\"oo\"",
+                "na",
+                "reply"
+            ],
+            "response": [
+                "di ako galit",
+                "kunin mo dine"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Mahal",
+                "den",
+                "kase",
+                "pasamahe",
+                "tapos",
+                "malayo",
+                "pa",
+                "yan",
+                "baka",
+                "di",
+                "lng",
+                "100",
+                "balikan"
+            ],
+            "response": [
+                "problema mona yun"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "De",
+                "ako",
+                "pa",
+                "nag",
+                "gasulina?"
+            ],
+            "response": [
+                "Oo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Nyek",
+                "wala",
+                "paden?"
+            ],
+            "response": [
+                "Baka umiinom"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Andyan",
+                "na",
+                "yun",
+                "siguro",
+                "maya",
+                "maya"
+            ],
+            "response": [
+                "Bka"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "pag",
+                "andyan",
+                "na",
+                "mag",
+                "antay",
+                "ako",
+                "sa",
+                "labas"
+            ],
+            "response": [
+                "Ikaw bahala"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "11",
+                "andyan",
+                "na",
+                "yun",
+                "hula",
+                "ko",
+                "lang"
+            ],
+            "response": [
+                "Andine na ngayon lang"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Punta",
+                "nako",
+                "sa",
+                "labas",
+                "antayin",
+                "kita"
+            ],
+            "response": [
+                "Cge"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Alin",
+                "ang",
+                "na",
+                "muntik",
+                "na",
+                "hack?"
+            ],
+            "response": [
+                "Oo ere"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ganun",
+                "pala",
+                "maganda",
+                "mattunan",
+                "na",
+                "script",
+                "e"
+            ],
+            "response": [
+                "Kaya nga den"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Iba",
+                "na",
+                "siguro",
+                "gamit",
+                "noj"
+            ],
+            "response": [
+                "Nagiiba iba den yung device e naka script yon, di magagawa ng ganon kabilis kung manual"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Oyyy"
+            ],
+            "response": [
+                "Mahal"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Naki",
+                "open",
+                "ako",
+                "kay",
+                "mama"
+            ],
+            "response": [
+                "Ganun bakit"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ehh",
+                "nakakabuset",
+                "ung",
+                "cp",
+                "ni",
+                "mama",
+                "ayaw",
+                "mag",
+                "open",
+                "ng",
+                "ibang",
+                "acc"
+            ],
+            "response": [
+                "Ganun bakit"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Sa",
+                "lite",
+                "na",
+                "messenger",
+                "nakakainis"
+            ],
+            "response": [
+                "Ahhhh ganun bat un"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Wag",
+                "na",
+                "baka",
+                "sabihin",
+                "madamot",
+                "ako"
+            ],
+            "response": [
+                "cge"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "kumuha",
+                "k",
+                "ng",
+                "3pcs",
+                "dahon",
+                "ng",
+                "atsuwete",
+                "lagyan",
+                "mo",
+                "ng",
+                "langis",
+                "tapal",
+                "mo",
+                "s",
+                "noo",
+                "mo"
+            ],
+            "response": [
+                "Opo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "uminom",
+                "ng",
+                "gamot",
+                "kada",
+                "4",
+                "oras",
+                "pwede",
+                "medicol"
+            ],
+            "response": [
+                "Opo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "bka",
+                "no",
+                "blood",
+                "k.s",
+                "hilo.ganito",
+                "gawin",
+                "mo..lagyan",
+                "mo",
+                "ng",
+                "asin",
+                "ung",
+                "butas",
+                "ng",
+                "pusod",
+                "mo",
+                "mga",
+                "ilang",
+                "butil",
+                "lng."
+            ],
+            "response": [
+                "Uminom na po akong medicol eh"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "magpatimpla",
+                "k",
+                "ng",
+                "mainit",
+                "n",
+                "milo",
+                "gatas",
+                "..pra",
+                "maalis",
+                "din",
+                "skit",
+                "ng",
+                "ulo",
+                "mo"
+            ],
+            "response": [
+                "Dinapo ako makapag kape kakatapos kolang po eh"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ok",
+                "chat",
+                "k",
+                "nlang..pag",
+                "ok",
+                "kna",
+                "matulog",
+                "kna",
+                "mawwala",
+                "n",
+                "yan"
+            ],
+            "response": [
+                "Opo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "musta.."
+            ],
+            "response": [
+                "Nawala na po ung hilo ung pomonya nalang"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "gbi",
+                "n",
+                "uwi",
+                "n"
+            ],
+            "response": [
+                "Wait lang po wala pa po mutor"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "musta",
+                "checkup",
+                "mo.."
+            ],
+            "response": [
+                "Okey lang po sabi ng doctor inumin ko mga gamot ko pag naubos balik sa clinic bibigyan ulit ng gamot"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "kumain",
+                "k",
+                "ng",
+                "madalas",
+                "khit",
+                "konti",
+                "konti.."
+            ],
+            "response": [
+                "Pasyensya po"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "lilibot",
+                "kb",
+                "dne",
+                "mmiya"
+            ],
+            "response": [
+                "Baka po .. dadalin ko po ung pag hulog eh"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "magttagal",
+                "kb",
+                "dne",
+                "dto",
+                "kna",
+                "kumain"
+            ],
+            "response": [
+                "Wag na po \u00e2\u0098\u00ba\u00ef\u00b8\u008f dito nalang po"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ngluluto",
+                "ako",
+                "dne",
+                "kna",
+                "kumain"
+            ],
+            "response": [
+                "Nagpapakuha pa po ba ng pera ung tata gani kukuha po kc si yoyong eh"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "san",
+                "bbli..pag",
+                "nkakuha",
+                "sbhin",
+                "mo",
+                "skin",
+                "nlang",
+                "kumuha",
+                "mkkuha",
+                "kagad",
+                "oppo"
+            ],
+            "response": [
+                "Sige po sasabihin ko"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "kmuka",
+                "ng",
+                "kinuha",
+                "mo",
+                "cp",
+                "7k.",
+                "db",
+                "halaga..ttanong",
+                "ng",
+                "papa",
+                "ni",
+                "bebe"
+            ],
+            "response": [
+                "ok bkas nlang.."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "May",
+                "alam",
+                "ba",
+                "gcash",
+                "mo",
+                "papaload",
+                "sana",
+                "ko",
+                "e",
+                "pag",
+                "uwi",
+                "ko",
+                "nalang",
+                "babayaran"
+            ],
+            "response": [
+                "28 lang e magkano ba?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Pwede",
+                "paload",
+                "muna",
+                "ng",
+                "99",
+                "paguwi",
+                "ko",
+                "nalang",
+                "bigay"
+            ],
+            "response": [
+                "Sige number"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Globe",
+                "ba",
+                "yan"
+            ],
+            "response": [
+                "Oo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Okey",
+                "na"
+            ],
+            "response": [
+                "Pumasok na thank you"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Bigay",
+                "kona",
+                "lng",
+                "pag",
+                "uwi"
+            ],
+            "response": [
+                "Oo cge"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Kuya",
+                "adoy",
+                "gumagawa",
+                "kaba",
+                "ng",
+                "charger",
+                "pin?"
+            ],
+            "response": [
+                "Oo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Pede",
+                "pagawa",
+                "mamayang",
+                "hapon",
+                "nalang",
+                "bayad"
+            ],
+            "response": [
+                "Cge"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Anong",
+                "model",
+                "yung",
+                "cp",
+                "nayon",
+                "grounded",
+                "yung",
+                "charge",
+                "pin",
+                "e",
+                "kahit",
+                "nagawa",
+                "na",
+                "namamatay",
+                "yung",
+                "pag",
+                "charge"
+            ],
+            "response": [
+                "Oo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Sigi",
+                "hayaan",
+                "muna",
+                "kuya",
+                "adoy",
+                "ung",
+                "vivo",
+                "nalang"
+            ],
+            "response": [
+                "Sige kunin monalang dine"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Na",
+                "try",
+                "mona",
+                "sa",
+                "ibang",
+                "charger?"
+            ],
+            "response": [
+                "Isang charger lng gamit namin e"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ako",
+                "nalang",
+                "kukuha",
+                "jan"
+            ],
+            "response": [
+                "cge cge"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Akala",
+                "ko",
+                "umorder",
+                "ka"
+            ],
+            "response": [
+                "Oo kaso nagawa na e, baka di na kako pabili"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ilang",
+                "days",
+                "ba",
+                "bago",
+                "dumating",
+                "un"
+            ],
+            "response": [
+                "2 days pa un"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "What",
+                "is",
+                "your",
+                "name?"
+            ],
+            "response": [
+                "Darius from the phillipines your.."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Where",
+                "are",
+                "you",
+                "from.."
+            ],
+            "response": [
+                "?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Hi"
+            ],
+            "response": [
+                "hellow"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                ":|"
+            ],
+            "response": [
+                ":})"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                ":D"
+            ],
+            "response": [
+                "can i understand you language i wish i see your emotion.."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Pakisabikay",
+                "mama",
+                "m",
+                "cgurado",
+                "ba",
+                "Yong",
+                "tags",
+                "calachuchi",
+                "atyong",
+                "pamasahi",
+                "at",
+                "papunta",
+                "na",
+                "cla",
+                "sa",
+                "kataposan",
+                "at",
+                "PKI",
+                "savi",
+                "mama",
+                "m",
+                "twag",
+                "mya",
+                "cia"
+            ],
+            "response": [
+                "Ok"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Sigorado",
+                "ba",
+                "pamasahi",
+                "daw",
+                "Kong",
+                "kompleto",
+                "na",
+                "kami",
+                "pwedi",
+                "ba",
+                "lunes",
+                "Ali's",
+                "namin"
+            ],
+            "response": [
+                "Saan ba nagbawas sa kawag o bundok?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Sabihin",
+                "mo",
+                "Hindi",
+                "nakami",
+                "matuloy",
+                "dyan",
+                "wla",
+                "na",
+                "kami",
+                "kasa",
+                "Hindi",
+                "saw",
+                "masama",
+                "ang",
+                "tags",
+                "bunduk"
+            ],
+            "response": [
+                "Cge"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Lahat",
+                "daw",
+                "ba",
+                "di",
+                "sasama?"
+            ],
+            "response": [
+                "Sa calachue sa Hindi masama"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Bale",
+                "ilan",
+                "nalang?"
+            ],
+            "response": [
+                "Ilang daw taga kalachue"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Text",
+                "lang",
+                "kami",
+                "pagilan",
+                "kami",
+                "dto"
+            ],
+            "response": [
+                "cge"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Mosta",
+                "san"
+            ],
+            "response": [
+                "Andito ako sa tarlac tawag nalang kayo kay mama diko masabi ung pinapasabi eh"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Pahingi",
+                "ako",
+                "number",
+                "mama",
+                "mo"
+            ],
+            "response": [
+                "Kukunin ko pag online na"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Piki",
+                "sabi",
+                "sa",
+                "mama",
+                "mo",
+                "3kami",
+                "alis"
+            ],
+            "response": [
+                "cge"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Hindi",
+                "kami",
+                "matuloy",
+                "bukas"
+            ],
+            "response": [
+                "Cge"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Sabi",
+                "mo",
+                "mama",
+                "mo",
+                "bukas",
+                "Ali's",
+                "kami",
+                "dto",
+                "sabi",
+                "sa",
+                "taga",
+                "bundok",
+                "bukas",
+                "Ali's",
+                "namin"
+            ],
+            "response": [
+                "Cge"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hahaha",
+                "..",
+                "hello",
+                "din",
+                ".."
+            ],
+            "response": [
+                "hehehe.."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                ":-)",
+                "..",
+                "di",
+                "ka",
+                "pa",
+                "mtu2log",
+                "?"
+            ],
+            "response": [
+                "di makatulog e"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hahaha",
+                "..",
+                "aus",
+                "din",
+                "tau",
+                "ah",
+                "..",
+                "magkatext",
+                "na",
+                "magkachat",
+                "pa",
+                ".",
+                "whaha",
+                ".."
+            ],
+            "response": [
+                "hahaha kaya nga e"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hello",
+                ".",
+                "bket",
+                "gcing",
+                "kpa",
+                "?"
+            ],
+            "response": [
+                "hehe..bakit ikaw gising pa?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ahh",
+                "de",
+                "wag",
+                "ka",
+                "matulog",
+                "para",
+                "maka",
+                "tulog",
+                "ka..",
+                "gets",
+                "mo?"
+            ],
+            "response": [
+                "hnd . :-P ."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hahaha",
+                "..",
+                "baliw",
+                "."
+            ],
+            "response": [
+                "ndi keya konti lang"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hahaha",
+                ".."
+            ],
+            "response": [
+                "tulog na ui"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "di",
+                "tlaga",
+                "ako",
+                "mkatulog",
+                ".",
+                "kaw",
+                "ung",
+                "matulog",
+                "na",
+                "."
+            ],
+            "response": [
+                "ayaw pa"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "bket",
+                "?"
+            ],
+            "response": [
+                "tinatamad ako eh"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ahh",
+                "ok",
+                ".."
+            ],
+            "response": [
+                "ammmmmmm......goodnyt"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "cge",
+                ".",
+                "good",
+                "nyt",
+                "din",
+                "sau",
+                ".."
+            ],
+            "response": [
+                "oyy , musta na ?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Hahaha...okie",
+                "lang",
+                "namn",
+                "ikaw",
+                "namiss",
+                "kita",
+                "ah"
+            ],
+            "response": [
+                "asus ! ok lng din .. namiss nya dw ako ."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "kaw",
+                "kce",
+                "eh",
+                "snob",
+                "kna",
+                "..",
+                "di",
+                "mu",
+                "na",
+                "ko",
+                "tinetext",
+                "or",
+                "chinachat",
+                ".."
+            ],
+            "response": [
+                "Ikaw nga inaantay ko eh kc ala nman nakka alala sakin"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "good",
+                "nyt",
+                ".."
+            ],
+            "response": [
+                "bukas na lng .. tulog kna din ha .. ?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "matutulog",
+                "na",
+                "ko",
+                "eh",
+                "..",
+                "good",
+                "nyt",
+                "na",
+                ".."
+            ],
+            "response": [
+                "Sige sweetdreamz"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "cge",
+                ".."
+            ],
+            "response": [
+                "ui"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ohh",
+                ",",
+                "kamusta",
+                "?"
+            ],
+            "response": [
+                "ayus lang namn ikaw ba?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hehe...makulim",
+                "lim",
+                "noH?"
+            ],
+            "response": [
+                "Ouh nga ehh .."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "my",
+                "bagyo",
+                "kc",
+                "eh",
+                "hehe...",
+                "boring",
+                "sa",
+                "bahay",
+                "dapat",
+                "may",
+                "pasok",
+                "nalang"
+            ],
+            "response": [
+                "bye out nako"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hellow"
+            ],
+            "response": [
+                "haii ."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "muzta",
+                "kna",
+                "po?"
+            ],
+            "response": [
+                "ok lang ako . ikaw po ba ?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ayus",
+                "lang",
+                "din...",
+                "hehe",
+                "gabi",
+                "na",
+                "po",
+                "gising",
+                "kapa",
+                "po"
+            ],
+            "response": [
+                "hmm , di kasi ako inaantok . hahaha \u00f0\u009f\u0098\u0082\u00f0\u009f\u0098\u0082\u00e2\u009c\u008c"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hehe...",
+                "ano",
+                "po",
+                "gawa",
+                "mo?"
+            ],
+            "response": [
+                "nakikipagchat po . ikaw ?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ahh",
+                ".",
+                "matulog",
+                "kana",
+                "\u00f0\u009f\u0098\u0082\u00e2\u009c\u008c"
+            ],
+            "response": [
+                "kakakape ko nga lang eh.. hehe hindi ako mka tulog"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ikaw",
+                "tulog",
+                "na..",
+                "hehe"
+            ],
+            "response": [
+                "maya po . hahha \u00e2\u009c\u008c\u00e2\u009c\u008c"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "haha..",
+                "sige",
+                "ako",
+                "coc",
+                "muna"
+            ],
+            "response": [
+                "sige po ."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Na",
+                "hack",
+                "re",
+                "kagabi",
+                "buti",
+                "naabatan",
+                "ko",
+                "\u00f0\u009f\u0098"
+            ],
+            "response": [
+                "Alin ang na muntik na hack?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Nakuha",
+                "yung",
+                "cookies,",
+                "taga",
+                "united",
+                "kingdom",
+                "yung",
+                "dumadale"
+            ],
+            "response": [
+                "Alin ang na muntik na hack?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Fb",
+                "mo?"
+            ],
+            "response": [
+                "Oo ere"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "I",
+                "was",
+                "Just",
+                "Curious.."
+            ],
+            "response": [
+                "\u00f0\u009f\u0087\u00a8\u00f0\u009f\u0087\u00a6"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Hello,",
+                "Darius"
+            ],
+            "response": [
+                "\u00e2\u0080\u008bGood Morning from Sunny Vancouver \u00f0\u009f\u0087\u00a8\u00f0\u009f\u0087\u00a6 \u00f0\u009f\u0098\u008e\u00e2\u0080\u008b"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Are",
+                "you",
+                "Truly",
+                "Ready",
+                "to",
+                "Come",
+                "to",
+                "Canada",
+                "in",
+                "2019?"
+            ],
+            "response": [
+                "I Want Work Permit"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "pwede",
+                "ka",
+                "po",
+                "maka",
+                "chat",
+                "minsan?\u00f0\u009f\u0098\u00b6"
+            ],
+            "response": [
+                "Ou"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ahmf",
+                "pd",
+                "ga",
+                "po",
+                "maq",
+                "requiz"
+            ],
+            "response": [
+                "amM..anun po un?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ahmf",
+                "naq",
+                "aaral",
+                "ka",
+                "po",
+                "bah.."
+            ],
+            "response": [
+                "Oo... amm ilang taon kana?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ui",
+                "hello",
+                "po\u00f0\u009f\u0099\u0082\u00f0\u009f\u0099\u0082"
+            ],
+            "response": [
+                "Ui"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Bkt",
+                "poE?"
+            ],
+            "response": [
+                "Musta po hehe di kana man po nagrereply dami kopo chat oh"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "pwede",
+                "ka",
+                "po",
+                "mka",
+                "chat?",
+                "\u00f0\u009f\u0099\u0082"
+            ],
+            "response": [
+                "Opo na kuya"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "haha..",
+                "nakulitan"
+            ],
+            "response": [
+                "taga saan ka po?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hindi",
+                "eh..",
+                "hehe",
+                "gumagalaw",
+                "kaya",
+                "un",
+                "tao",
+                "un",
+                "eh"
+            ],
+            "response": [
+                "haha"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Hahaha",
+                "kuya",
+                "kong",
+                "baliw",
+                ":p"
+            ],
+            "response": [
+                "haha hindi namn malala eh.."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "naka",
+                "uwi",
+                "knba",
+                "galing",
+                "school?"
+            ],
+            "response": [
+                "Opo kuya kanina pa."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "eh",
+                "kumain",
+                "kanaba?"
+            ],
+            "response": [
+                "Hindi pa po kuya."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hehe...",
+                "hindi",
+                "paba",
+                "luto",
+                "ang",
+                "ulam",
+                "natin?"
+            ],
+            "response": [
+                "Hahaha luto na po."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ayy",
+                "para",
+                "pala",
+                "yang",
+                "biko",
+                "3",
+                "hours",
+                "maluto"
+            ],
+            "response": [
+                "hahaha Oo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Good",
+                "morning"
+            ],
+            "response": [
+                "morning din"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Okay",
+                "po",
+                "kuya"
+            ],
+            "response": [
+                "amM... pasok muna ako hehe"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ge",
+                "po",
+                "kuya",
+                "ingat."
+            ],
+            "response": [
+                "hehe.. Oo namn ikaw din ingat ka jan sa school madaming pogi jan"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Hahaha",
+                "wala",
+                "nga"
+            ],
+            "response": [
+                "nako.. haha"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "kumain",
+                "kna",
+                "ba?"
+            ],
+            "response": [
+                "Opo kuya, ikaw?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Oo",
+                "din",
+                "kakatapos",
+                "lang",
+                "goodluck",
+                "sayo",
+                "jan"
+            ],
+            "response": [
+                "Kuya ko"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Oh",
+                "kagigising",
+                "lang",
+                "hehe"
+            ],
+            "response": [
+                "hehe bakit may problema kaba?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Hay",
+                "nako",
+                "si",
+                "kuya."
+            ],
+            "response": [
+                "hehe bakit may problema kaba?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "makapag",
+                "kape..",
+                "hehe\u00f0\u009f\u0098\u0086"
+            ],
+            "response": [
+                "Oo kuya ikaw!"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "anO",
+                "ung",
+                "problema?"
+            ],
+            "response": [
+                "Hindi ka po kasi makachat ng ayos kuya!"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "haha...",
+                "eh",
+                "bakit",
+                "namn?",
+                "hehe"
+            ],
+            "response": [
+                "Hay nako wala! >.<"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "mahina",
+                "ba",
+                "signal",
+                "jan?"
+            ],
+            "response": [
+                "Oh ako ung hindi maayos.. hehehe"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Sadya",
+                "ikaw",
+                "nga",
+                "po."
+            ],
+            "response": [
+                "sige magiging serious nako"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Okay",
+                "po!"
+            ],
+            "response": [
+                "Okay po! Sana nga."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hehe",
+                "pipilitin",
+                "ko"
+            ],
+            "response": [
+                "kumain knba?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Opo",
+                "nga!"
+            ],
+            "response": [
+                "hehehe.. anO ulam natin?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Wag",
+                "mong",
+                "pilitin",
+                "gawin",
+                "mo."
+            ],
+            "response": [
+                "Oo na etO namn oh seryoso"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "may",
+                "exchange",
+                "gift",
+                "ba",
+                "kau",
+                "sa",
+                "school?"
+            ],
+            "response": [
+                "amM... wait lang huh kain lang ako kain tayo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ui",
+                "umiiyak",
+                "kba?"
+            ],
+            "response": [
+                "dipo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Wag",
+                "kana",
+                "pong",
+                "mag",
+                "alala",
+                "kuya",
+                "darius",
+                "okay",
+                "na",
+                "po",
+                "kami."
+            ],
+            "response": [
+                "Oh ayun nman pla eh.. hehe umiyak kpa tuloy"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Okay",
+                "lang",
+                "po",
+                "yon",
+                "mahal",
+                "ko",
+                "po",
+                "kasi."
+            ],
+            "response": [
+                "pero hindi dapat pinapa iyak ang babae"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Opo",
+                "na",
+                "kuya",
+                "darius!"
+            ],
+            "response": [
+                "sa susunod wag kna iiyak tatagan mo hehehe.."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "nyahaha",
+                "wag",
+                "ka",
+                "maingay"
+            ],
+            "response": [
+                "Hahaha kaya nga po kuya."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Hahaha",
+                "sabi",
+                "na",
+                "e!",
+                "Kuya",
+                "katamad",
+                "mo!",
+                "Pasok",
+                "ikaw",
+                "bukas?"
+            ],
+            "response": [
+                "hindi totoo gagamitin nga ung bhaby ko kaya wala akong sasakyan malayo kaya school dito kaylangan ng turbo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Hahaha",
+                "edi",
+                "tumakbo",
+                "ka",
+                "kuya",
+                "hahaha"
+            ],
+            "response": [
+                "haha tatlong hakbang palang pagod nako"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ngek",
+                "hay",
+                "nako",
+                "kuya",
+                "alam",
+                "mo",
+                "kong",
+                "bakit",
+                "ka",
+                "ganyan",
+                "sinanay",
+                "mo",
+                "kasi",
+                "yong",
+                "paa",
+                "at",
+                "katawan",
+                "mo",
+                "na",
+                "lagi",
+                "kang",
+                "nakamotor."
+            ],
+            "response": [
+                "eh mano pogi namn"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "\u00f0\u009f\u0098\u009d"
+            ],
+            "response": [
+                "Oo na!"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "bakit",
+                "ganun",
+                "hindi",
+                "ako",
+                "mahilig",
+                "gumala",
+                "ikaw",
+                "ba?"
+            ],
+            "response": [
+                "good\u00f0\u009f\u0098\u0086"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Kuya",
+                "darius",
+                "Pogi",
+                "ka",
+                "nga",
+                "tamad",
+                "naman."
+            ],
+            "response": [
+                "abah haha hindi namn sobra konti lang"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Hahaha",
+                "kuya"
+            ],
+            "response": [
+                "amM. oi bunso lowbat nako tulog kna jan hah goodnyt"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Andaya",
+                "mo",
+                "kuya",
+                ":(",
+                "bahala",
+                "ka."
+            ],
+            "response": [
+                "sorry nman po nmatay na kc eh lowbat na"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "morning\u00f0\u009f\u0098\u008a"
+            ],
+            "response": [
+                "Bad morning"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Tinulugan",
+                "mo",
+                "kasi",
+                "ako",
+                "kuya!"
+            ],
+            "response": [
+                "hindi kaya na lowbat ako .."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "kumain",
+                "knba?"
+            ],
+            "response": [
+                "opo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ayoh",
+                "natampo",
+                "\u00f0\u009f\u0098\u00b6"
+            ],
+            "response": [
+                "sorry na po\u00f0\u009f\u0098\u00a3"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "sige",
+                "maya",
+                "nalang",
+                "ingat",
+                "\u00f0\u009f\u0098\u008a"
+            ],
+            "response": [
+                "Ge :( lagi nalang e!"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "haha",
+                "..ala",
+                "kabang",
+                "ginagawa",
+                "jan?"
+            ],
+            "response": [
+                "nakawala ung baboy ipinasok ko lalaki haha ambaho pa"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hehehe...",
+                "pumasok",
+                "kaba",
+                "bat",
+                "nakaka",
+                "reply",
+                "ka?"
+            ],
+            "response": [
+                "Hindi po kuy's"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "galit",
+                "nanamn"
+            ],
+            "response": [
+                "Hindi po kuy's"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "amM...",
+                "ingat",
+                "ka",
+                "jan",
+                "hah",
+                "charge",
+                "muna",
+                "ako"
+            ],
+            "response": [
+                "Charge na naman okay!"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ingat",
+                "po\u00f0\u009f\u0099\u0082"
+            ],
+            "response": [
+                "amM... vc kba?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "wala",
+                "paba",
+                "kayong",
+                "klase??"
+            ],
+            "response": [
+                "Halfday lang po kami."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ayy",
+                "ganun",
+                "eh",
+                "nka",
+                "uwi",
+                "knba?"
+            ],
+            "response": [
+                "Opo kuya ko."
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Jeje",
+                "ka?"
+            ],
+            "response": [
+                "kumain kna?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "kain",
+                "kna",
+                "at",
+                "maliligo",
+                "pa",
+                "si",
+                "kuya"
+            ],
+            "response": [
+                "\u00f0\u009f\u0098\u008a"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Ala",
+                "lagi",
+                "kana",
+                "lang!",
+                "Ge",
+                "na",
+                "nga!",
+                "Bye!"
+            ],
+            "response": [
+                "tapos na pogi na ulit"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "eto",
+                "nagtatampo",
+                "nanamn",
+                "sya"
+            ],
+            "response": [
+                "Ge maligo ka pa!"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                ":("
+            ],
+            "response": [
+                ":("
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hehehe.."
+            ],
+            "response": [
+                ":-) .. di ka pa mtu2log ?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hello",
+                "foo"
+            ],
+            "response": [
+                "hi"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "taga",
+                "saan",
+                "ka",
+                "po?"
+            ],
+            "response": [
+                "wahaahaha taga puso po ng bf ko"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "taga",
+                "saan",
+                "po",
+                "ba",
+                "ung",
+                "puso",
+                "ng",
+                "bf",
+                "mo?"
+            ],
+            "response": [
+                "Iwan ko hahaha \u00f0\u009f\u0098\u0082\u00f0\u009f\u0098\u0082\u00f0\u009f\u0098\u0082"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ilang",
+                "taon",
+                "kna",
+                "po?"
+            ],
+            "response": [
+                "15foo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ikw",
+                "LNG",
+                "taon",
+                "kana",
+                "ba"
+            ],
+            "response": [
+                "17 na binata na.. haha"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Oo",
+                "pang",
+                "mga",
+                "may",
+                "bigote",
+                "na",
+                "to",
+                "eh"
+            ],
+            "response": [
+                "hahahaha tang na"
             ],
             "single_response": true,
             "required_words": []

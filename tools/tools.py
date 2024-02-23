@@ -5,6 +5,7 @@ from functions.logger import log, log_error
 
 TAGS_MAPPING = json.loads(open("data/tags_mapping.json", "r").read())
 
+
 def get_required_words():
     storage = []
     while True:
@@ -15,10 +16,12 @@ def get_required_words():
                 return storage
             if __input__ != "":
                 storage.append(__input__)
-            log(f"Required words patterns: {storage} \033[1;93mskip to exit\033[1;92m")
+            log(
+                f"Required words patterns: {storage} \033[1;93mskip to exit\033[1;92m")
         except Exception as e:
             ic(e)
-            
+
+
 def get_response_patterns():
     storage = []
     while True:
@@ -34,11 +37,13 @@ def get_response_patterns():
         except Exception as e:
             ic(e)
 
+
 def get_patterns():
     storage = []
     while True:
         try:
-            __input__ = input("\033[1;92m║ \033[1;97mChat patterns: \033[1;92m")
+            __input__ = input(
+                "\033[1;92m║ \033[1;97mChat patterns: \033[1;92m")
             if __input__ == "":
                 log("\033[1;93mPlease add words before skip!\033[1;92m")
                 continue
@@ -50,12 +55,13 @@ def get_patterns():
                 return storage
         except Exception as e:
             ic(e)
-            
+
+
 def get_tag():
     print("\033[1;92m║ Tags:")
     for key, value in TAGS_MAPPING.items():
         print(f"\033[1;92m║ \033[1;92m{key}. {value}")
-    
+
     tags = input("\033[1;92m║ \033[1;97mEnter the tag number: \033[1;92m")
     tags = TAGS_MAPPING.get(tags, "Conversations")
     log(f"TOPIC IS {tags}")
@@ -75,14 +81,13 @@ def is_new(patterns, tags):
     return is_new_pattern
 
 
-
-    
 def save_json(tags, patterns, response, single_response, required_words):
     new = is_new(patterns=patterns, tags=tags)
     if new:
         save_new(tags, patterns, response, single_response, required_words)
     else:
         save_already(tags, patterns, response, single_response, required_words)
+
 
 def save_already(tags: str, patterns: List[str], response: List[str], single_response: bool, required_words: List[str]):
     check_tags(tags=tags)
@@ -118,6 +123,7 @@ def check_tags(tags):
         config_w(config)
     return
 
+
 def save_new(tags, patterns, response, single_response, required_words=[]):
     check_tags(tags=tags)
     config = openconfig()
@@ -131,6 +137,10 @@ def save_new(tags, patterns, response, single_response, required_words=[]):
     config_w(config)
     ic("New configuration saved.")
 
+
+
+
+
 def openconfig():
     try:
         with open('data/config.json', 'r') as file:
@@ -138,6 +148,10 @@ def openconfig():
     except FileNotFoundError:
         return {}
 
+
 def config_w(config):
-    with open('data/config.json', 'w') as file:
-        json.dump(config, file, indent=4)
+    try:
+        with open('data/config.json', 'w') as file:
+            json.dump(config, file, indent=4)
+    except PermissionError:
+        log_error("Permisson denied when saving config.json")
