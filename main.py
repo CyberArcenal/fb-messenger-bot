@@ -13,7 +13,7 @@ from settings.version import __check__, __clr__
 from settings.br import get_header
 from functions.ck import save_cookies_in_the_list, display_cookies, \
     save_cookies, clean_cookie, clear_cookies, clear_logs, \
-    open_cookie_list, open_cookies
+    open_cookie_list, open_cookies, switch_cookiefile
 from functions.logger import log, log_error
 
 from functions.soup import find_input_fields, find_url, \
@@ -231,7 +231,30 @@ def display_cookiefile(cookies):
     print(f"\n{cookies}")
     input(f"{yellow}Exit:")
     View_Cookies()
+    
 
+def Switch_Account():
+    os.system(clr)
+    print(logo)
+    print(line)
+    cookie_list = open_cookie_list()
+    for i in range(len(cookie_list['cookies_list'])):
+        to_display = cookie_list["cookies_list"][i]
+        print(
+            f"\033[1;92m║ {white}{str(i)}. \033[1;92mAccount: {to_display['account']}")
+        print(
+            f"\033[1;92m║ \033[1;92mDate Logged: {to_display['date_logged']}")
+        print(line2)
+    try:
+        a = pick()
+        if a == "":
+            home()
+        switch_cookiefile(cookie_list["cookies_list"][int(a)]["cookies"])
+        home()
+    except Exception as e:
+        log_error(e)
+        input()
+        View_Cookies()
 
 def View_Cookies():
     os.system(clr)
@@ -1001,6 +1024,7 @@ def home():
     print("\033[1;92m║ \033[1;91m6. \033[1;94m—> \033[1;92mTest ChatBot")
     print("\033[1;92m║ \033[1;91m7. \033[1;94m—> \033[1;92mLogin")
     print("\033[1;92m║ \033[1;91m8. \033[1;94m—> \033[1;92mUpdate")
+    print("\033[1;92m║ \033[1;91m9. \033[1;94m—> \033[1;92mSwitch Account")
     print("\033[1;92m║ \033[1;91m0. \033[1;94m—> \033[1;93mExit")
     home_pick()
 
@@ -1009,6 +1033,8 @@ def home_pick():
     p = pick()
     if p == "1":
         start_bot()
+    elif p == "3":
+        View_Cookies()
     elif p == "4":
         train_main()
     elif p == "5":
@@ -1020,6 +1046,8 @@ def home_pick():
     elif p == "8":
         os.system("git pull")
         os.system("python3 main.py")
+    elif p == "9":
+        Switch_Account()
     elif p == "0":
         sys.exit()
     else:
