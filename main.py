@@ -329,6 +329,11 @@ class Facebook_messenger(Client):
         
         try:
             name = " ".join(msg.split()[2:4])
+            self.TypingStatusStart(thread_id=thread_id, thread_type=thread_type)
+            time.sleep(2)
+            self.send(Message(text=f"Finding {name} in facebook please wait."), thread_id=thread_id,
+                      thread_type=thread_type)
+            self.TypingStatusStop(thread_id=thread_id, thread_type=thread_type)
             limit = get_limit(message=msg)
             params = {"search": name, "limit": limit}
             (j,) = self.graphql_requests(
@@ -345,7 +350,7 @@ class Facebook_messenger(Client):
 
     def message_proccessing_unit(self, msg: str, thread_id, thread_type):
         try:
-            if "search" in msg and "user" in msg or "search" in msg and "friend" in msg:
+            if "search" in msg and "user" in msg or "search" in msg and "friend" in msg or "pakihanap" in msg and "si" in msg:
                 self.searchUser(msg=msg, thread_id=thread_id,
                                 thread_type=thread_type)
             elif ("download youtube" in msg.lower()):

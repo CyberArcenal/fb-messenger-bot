@@ -21,7 +21,3 @@ def get_limit(message)->int:
           except:
                pass
      return 10
-
-chat = "search user Darius Gabriel limit is 20"
-limit = get_limit(chat)
-print(limit)
