@@ -458,6 +458,89 @@
             ],
             "single_response": true,
             "required_words": []
+        },
+        {
+            "patterns": [
+                "Oi"
+            ],
+            "response": [
+                "bakit po?",
+                "bakit",
+                "bat po",
+                "oh bakit po?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "huy"
+            ],
+            "response": [
+                "oh"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ay"
+            ],
+            "response": [
+                "ay ay"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "yo",
+                "yo",
+                "yo",
+                "yo"
+            ],
+            "response": [
+                "hahahah",
+                "haha"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "oi"
+            ],
+            "response": [
+                "ow"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hey",
+                "ey",
+                "yey"
+            ],
+            "response": [
+                "ow whats up",
+                "sup!",
+                "yow!"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "andito",
+                "nga",
+                "lang"
+            ],
+            "response": [
+                "ahhh hhehehe sorry"
+            ],
+            "single_response": true,
+            "required_words": []
         }
     ]
 }

@@ -2,13 +2,15 @@ import json
 import bs4
 import sys
 import requests
+import sqlite3
 from requests import Response
 from .logger import log, log_error
 from settings.settings import DEBUG
 from settings.settings import green, yellow
 from typing import List
 
-def save_ongoing_chat():
+
+def save_ongoing_chat(author_id, mid, msg):
     try:
         conn = sqlite3.connect("messages.db")
         c = conn.cursor()
@@ -30,6 +32,7 @@ def save_ongoing_chat():
     except:
         pass
 
+
 def weather(city):
     api_address = "https://api.openweathermap.org/data/2.5/weather?appid=0c42f7f6b53b244c78a418f4f181282a&q="
     url = api_address + city
@@ -45,183 +48,11 @@ def weather(city):
     humidity = json_data["main"]["humidity"]
     wind_speed = json_data["wind"]["speed"]
 
-    return(
+    return (
         f"The current temperature of {city} is %.1f degree celcius with {description}" % celcius_res)
 
-def stepWiseCalculus(query):
-    query = query.replace("+", "%2B")
-    try:
-        try:
-            api_address = f"https://api.wolframalpha.com/v2/query?appid=Y98QH3-24PWX83VGA&input={query}&podstate=Step-by-step%20solution&output=json&format=image"
-            json_data = requests.get(api_address).json()
-            answer = json_data["queryresult"]["pods"][0]["subpods"][1]["img"]["src"]
-            answer = answer.replace("sqrt", "√")
 
-            if(thread_type == ThreadType.USER):
-                self.sendRemoteFiles(
-                    file_urls=answer, message=None, thread_id=thread_id, thread_type=ThreadType.USER)
-            elif(thread_type == ThreadType.GROUP):
-                self.sendRemoteFiles(
-                    file_urls=answer, message=None, thread_id=thread_id, thread_type=ThreadType.GROUP)
-        except:
-            pass
-        try:
-            api_address = f"http://api.wolframalpha.com/v2/query?appid=Y98QH3-24PWX83VGA&input={query}&podstate=Result__Step-by-step+solution&format=plaintext&output=json"
-            json_data = requests.get(api_address).json()
-            answer = json_data["queryresult"]["pods"][0]["subpods"][0]["img"]["src"]
-            answer = answer.replace("sqrt", "√")
-
-            if(thread_type == ThreadType.USER):
-                self.sendRemoteFiles(
-                    file_urls=answer, message=None, thread_id=thread_id, thread_type=ThreadType.USER)
-            elif(thread_type == ThreadType.GROUP):
-                self.sendRemoteFiles(
-                    file_urls=answer, message=None, thread_id=thread_id, thread_type=ThreadType.GROUP)
-
-        except:
-            try:
-                answer = json_data["queryresult"]["pods"][1]["subpods"][1]["img"]["src"]
-                answer = answer.replace("sqrt", "√")
-
-                if(thread_type == ThreadType.USER):
-                    self.sendRemoteFiles(
-                        file_urls=answer, message=None, thread_id=thread_id, thread_type=ThreadType.USER)
-                elif(thread_type == ThreadType.GROUP):
-                    self.sendRemoteFiles(
-                        file_urls=answer, message=None, thread_id=thread_id, thread_type=ThreadType.GROUP)
-
-            except:
-                pass
-    except:
-        pass
-
-def stepWiseAlgebra(query):
-    query = query.replace("+", "%2B")
-    api_address = f"http://api.wolframalpha.com/v2/query?appid=Y98QH3-24PWX83VGA&input=solve%203x^2+4x-6=0&podstate=Result__Step-by-step+solution&format=plaintext&output=json"
-    json_data = requests.get(api_address).json()
-    try:
-        answer = json_data["queryresult"]["pods"][1]["subpods"][2]["plaintext"]
-        answer = answer.replace("sqrt", "√")
-
-        self.send(Message(text=answer), thread_id=thread_id,
-                    thread_type=thread_type)
-
-    except Exception as e:
-        pass
-    try:
-        answer = json_data["queryresult"]["pods"][1]["subpods"][3]["plaintext"]
-        answer = answer.replace("sqrt", "√")
-
-        self.send(Message(text=answer), thread_id=thread_id,
-                    thread_type=thread_type)
-
-    except Exception as e:
-        pass
-    try:
-        answer = json_data["queryresult"]["pods"][1]["subpods"][4]["plaintext"]
-        answer = answer.replace("sqrt", "√")
-
-        self.send(Message(text=answer), thread_id=thread_id,
-                    thread_type=thread_type)
-
-    except Exception as e:
-        pass
-    try:
-        answer = json_data["queryresult"]["pods"][1]["subpods"][1]["plaintext"]
-        answer = answer.replace("sqrt", "√")
-
-        self.send(Message(text=answer), thread_id=thread_id,
-                    thread_type=thread_type)
-
-    except Exception as e:
-        pass
-    try:
-        answer = json_data["queryresult"]["pods"][1]["subpods"][0]["plaintext"]
-        answer = answer.replace("sqrt", "√")
-
-        self.send(Message(text=answer), thread_id=thread_id,
-                    thread_type=thread_type)
-
-    except Exception as e:
-        pass
-
-def stepWiseQueries(query):
-    query = query.replace("+", "%2B")
-    api_address = f"http://api.wolframalpha.com/v2/query?appid=Y98QH3-24PWX83VGA&input={query}&podstate=Result__Step-by-step+solution&format=plaintext&output=json"
-    json_data = requests.get(api_address).json()
-    try:
-        try:
-            answer = json_data["queryresult"]["pods"][0]["subpods"][0]["plaintext"]
-            answer = answer.replace("sqrt", "√")
-            self.send(Message(text=answer), thread_id=thread_id,
-                        thread_type=thread_type)
-
-        except Exception as e:
-            pass
-        try:
-            answer = json_data["queryresult"]["pods"][1]["subpods"][0]["plaintext"]
-            answer = answer.replace("sqrt", "√")
-
-            self.send(Message(text=answer), thread_id=thread_id,
-                        thread_type=thread_type)
-
-        except Exception as e:
-            pass
-        try:
-            answer = json_data["queryresult"]["pods"][1]["subpods"][1]["plaintext"]
-            answer = answer.replace("sqrt", "√")
-
-            self.send(Message(text=answer), thread_id=thread_id,
-                        thread_type=thread_type)
-
-        except Exception as e:
-            pass
-    except:
-        self.send(Message(text="Cannot find the solution of this problem"), thread_id=thread_id,
-                    thread_type=thread_type)
-
-def programming_solution(self, query):
-    try:
-        count = int(msg.split()[-1])
-    except:
-        count = 6
-    try:
-        x = int(query.split()[-1])
-        if type(x) == int:
-            query = " ".join(msg.split()[0:-1])
-    except:
-        pass
-    image_urls = []
-
-    url = "https://bing-image-search1.p.rapidapi.com/images/search"
-
-    querystring = {"q": query, "count": str(count)}
-
-    headers = {
-        'x-rapidapi-host': "bing-image-search1.p.rapidapi.com",
-        'x-rapidapi-key': "801ba934d6mshf6d2ea2be5a6a40p188cbejsn09635ee54c45"
-    }
-    response = requests.request(
-        "GET", url, headers=headers, params=querystring)
-    data = json.loads(response.text)
-    img_contents = (data["value"])
-    # print(img_contents)
-    for img_url in img_contents:
-        image_urls.append(img_url["contentUrl"])
-        print("appended..")
-
-    def multiThreadImg(img_url):
-        if (thread_type == ThreadType.USER):
-            self.sendRemoteFiles(
-                file_urls=img_url, message=None, thread_id=thread_id, thread_type=ThreadType.USER)
-        elif (thread_type == ThreadType.GROUP):
-            self.sendRemoteFiles(
-                file_urls=img_url, message=None, thread_id=thread_id, thread_type=ThreadType.GROUP)
-
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.map(multiThreadImg, image_urls)
-
-def translator(self, query, target):
+def translator(query, target):
     query = " ".join(query.split()[1:-2])
     url = "https://microsoft-translator-text.p.rapidapi.com/translate"
 
@@ -242,81 +73,6 @@ def translator(self, query, target):
     json_response = eval(response.text)
 
     return json_response[0]["translations"][0]["text"]
-
-def imageSearch(self, msg):
-    try:
-        count = int(msg.split()[-1])
-    except:
-        count = 10
-    query = " ".join(msg.split()[2:])
-    try:
-        x = int(query.split()[-1])
-        if type(x) == int:
-            query = " ".join(msg.split()[2:-1])
-    except:
-        pass
-    image_urls = []
-
-    url = "https://bing-image-search1.p.rapidapi.com/images/search"
-
-    querystring = {"q": query, "count": str(count)}
-
-    headers = {
-        'x-rapidapi-host': "bing-image-search1.p.rapidapi.com",
-        'x-rapidapi-key': "801ba934d6mshf6d2ea2be5a6a40p188cbejsn09635ee54c45"
-    }
-    print("sending requests...")
-    response = requests.request(
-        "GET", url, headers=headers, params=querystring)
-    print("got response..")
-    data = json.loads(response.text)
-    img_contents = (data["value"])
-    # print(img_contents)
-    for img_url in img_contents:
-        image_urls.append(img_url["contentUrl"])
-        print("appended..")
-
-    def multiThreadImg(img_url):
-        if (thread_type == ThreadType.USER):
-            self.sendRemoteFiles(
-                file_urls=img_url, message=None, thread_id=thread_id, thread_type=ThreadType.USER)
-        elif (thread_type == ThreadType.GROUP):
-            self.sendRemoteFiles(
-                file_urls=img_url, message=None, thread_id=thread_id, thread_type=ThreadType.GROUP)
-
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.map(multiThreadImg, image_urls)
-
-def searchFiles(self):
-    query = " ".join(msg.split()[2:])
-    file_urls = []
-    url = "https://filepursuit.p.rapidapi.com/"
-
-    querystring = {"q": query, "filetype": msg.split()[1]}
-
-    headers = {
-        'x-rapidapi-host': "filepursuit.p.rapidapi.com",
-        'x-rapidapi-key': "801ba934d6mshf6d2ea2be5a6a40p188cbejsn09635ee54c45"
-    }
-
-    response = requests.request(
-        "GET", url, headers=headers, params=querystring)
-
-    response = json.loads(response.text)
-    file_contents = response["files_found"]
-    try:
-        for file in random.sample(file_contents, 10):
-            file_url = file["file_link"]
-            file_name = file["file_name"]
-            self.send(Message(text=f'{file_name}\n Link: {file_url}'),
-                        thread_id=thread_id, thread_type=ThreadType.USER)
-    except:
-        for file in file_contents:
-            file_url = file["file_link"]
-            file_name = file["file_name"]
-            self.send(Message(text=f'{file_name}\n Link: {file_url}'),
-                        thread_id=thread_id, thread_type=ThreadType.USER)
-
 
 
 def get_youtube_link(message: str):
@@ -344,8 +100,10 @@ def get_youtube_link(message: str):
     print("final", final_link)
     return final_link
 
+
 def find_input_fields(html):
     return bs4.BeautifulSoup(html, "html.parser", parse_only=bs4.SoupStrainer("input"))
+
 
 def find_url(page):
     try:
@@ -359,6 +117,7 @@ def find_url(page):
         #     log_error(page)
         sys.exit()
 
+
 def get_input_data(page):
     soup_data = find_input_fields(page.text)
     data = dict(
@@ -367,6 +126,7 @@ def get_input_data(page):
         if elem.has_attr("value") and elem.has_attr("name")
     )
     return data
+
 
 def create_form_2fa(page):
     action_url = find_url(page.text)
@@ -377,13 +137,14 @@ def create_form_2fa(page):
     return action_url, data
 
 
-def create_form(response:Response)->List:
+def create_form(response: Response) -> List:
     action_url = find_url(response.text)
     data = get_input_data(page=response)
     data["login"] = "Log in"
     if "sign_up" in data:
         del (data["sign_up"])
     return data, action_url
+
 
 def get_page_title(page_text):
     try:
@@ -393,6 +154,7 @@ def get_page_title(page_text):
     except Exception as e:
         log_error(e)
         return "none"
+
 
 def get_title_message(page):
     try:
@@ -404,6 +166,7 @@ def get_title_message(page):
             log_error(e)
         title_msg = None
     return title_msg
+
 
 def get_title_dexcription(page):
     try:
@@ -417,23 +180,25 @@ def get_title_dexcription(page):
         title_dexcription = None
     return title_dexcription
 
-def print_page_title(page_text: str)->None:
-      try:
-            s = bs4.BeautifulSoup(page_text, "html.parser")
-            title_text = s.title.text.strip()
-            print(f"\033[1;92m║ {yellow}{title_text}")
-      except Exception as e:
-            #log_error(e)
-            pass
 
-def _print_page__(page_text: str, pritie: bool=False)->None:
+def print_page_title(page_text: str) -> None:
     try:
         s = bs4.BeautifulSoup(page_text, "html.parser")
-        
-        if pritie:
-                print(s.prettify())
-        else:
-                print(page_text)
+        title_text = s.title.text.strip()
+        print(f"\033[1;92m║ {yellow}{title_text}")
     except Exception as e:
-        #log_error(e)
+        # log_error(e)
+        pass
+
+
+def _print_page__(page_text: str, pritie: bool = False) -> None:
+    try:
+        s = bs4.BeautifulSoup(page_text, "html.parser")
+
+        if pritie:
+            print(s.prettify())
+        else:
+            print(page_text)
+    except Exception as e:
+        # log_error(e)
         pass
