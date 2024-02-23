@@ -176,6 +176,371 @@
                 "you",
                 "u"
             ]
+        },
+        {
+            "patterns": [
+                "hehhe",
+                "hhe",
+                "hehe",
+                "hehehe",
+                "hhehe",
+                "hhhhh",
+                "hhhe"
+            ],
+            "response": [
+                "heheheh",
+                "hehe",
+                "heheh ganon",
+                ":)",
+                "ay heheh",
+                "ay hehe",
+                "Ay hehehheh"
+            ],
+            "single_response": true,
+            "required_words": [
+                "hehehe",
+                "hehe",
+                "hhe"
+            ]
+        },
+        {
+            "patterns": [
+                "hahaha",
+                "haha",
+                "hahahaha"
+            ],
+            "response": [
+                "nyek hehehe",
+                "nyek",
+                "hehehe",
+                "ay hehehe",
+                "ay bakit po?",
+                "bakit po?",
+                "bakit?",
+                ":(",
+                "ngaeks"
+            ],
+            "single_response": true,
+            "required_words": [
+                "hahaha",
+                "haha",
+                "hahahaha",
+                "hhaha",
+                "hhahah",
+                "hahhaha",
+                "hahahha",
+                "hahahahahah"
+            ]
+        },
+        {
+            "patterns": [
+                "ikaw",
+                "po",
+                "ba?"
+            ],
+            "response": [
+                "ganon den sayo hehe",
+                "ganon den sayo",
+                "ganon den",
+                "pareho lang tayo hehe",
+                "pareho lang tayo"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "nyek",
+                "nyeks",
+                "ngek",
+                "ngeks",
+                "ngks",
+                "nyaks",
+                "nyks"
+            ],
+            "response": [
+                "hahahaha",
+                "hehehhe",
+                "nyek bat kaya",
+                "ay hehehhe",
+                "nyuks",
+                "nyookss"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Opo"
+            ],
+            "response": [
+                "ahhh",
+                "Ahhh",
+                "ganon",
+                "ehhh",
+                "oww"
+            ],
+            "single_response": true,
+            "required_words": [
+                "Opo"
+            ]
+        },
+        {
+            "patterns": [
+                "eto",
+                "nagcocomputer",
+                "lang",
+                "nagkokomputer",
+                "computer",
+                "komputer"
+            ],
+            "response": [
+                "ano ginagawa mo sa computer?",
+                "galing naman",
+                "paano yan?",
+                "turuan moko hehe",
+                "paturo hehe",
+                "paano kaya yan",
+                "may computer ka pala hehe",
+                "may computer ka?",
+                "patingin?",
+                "galing naman",
+                "ahhhh hehhe",
+                "ayy galing naman po",
+                "ay galing paturo",
+                "ay paturo sa assignment ko"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ito",
+                "nagkakape",
+                "lang",
+                "dito",
+                "sa",
+                "labas",
+                "ng",
+                "terres",
+                "namin",
+                "masarap",
+                "magkape",
+                "pag",
+                "hapon",
+                "na",
+                "e",
+                "tara",
+                "kape",
+                "tayo"
+            ],
+            "response": [
+                "ay pakape naman",
+                "pakape",
+                "ano kape mo",
+                "ano flavor",
+                "ay pahigop hehe",
+                "pahigop hehe",
+                "patikim hehe",
+                "ano lasa?",
+                "sige lang kape kalang",
+                "kape lang po"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "opo"
+            ],
+            "response": [
+                "ahh ganon",
+                "ganon",
+                "sige",
+                "sige bye",
+                "sige ingat",
+                ":)",
+                "ayy ganon",
+                "ganon"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "sinner",
+                "kana",
+                "ka",
+                "seener"
+            ],
+            "response": [
+                "hindi naman po",
+                "hindi naman",
+                "dipo",
+                "dipo busy lang",
+                "dipo, kamusta po"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "para",
+                "kang",
+                "sira",
+                "hehehe"
+            ],
+            "response": [
+                "bat naman masisira hehe",
+                "bakit naman hehe",
+                "bakit naman po",
+                "bakit naman",
+                "ngek"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "busy",
+                "kana",
+                "yata"
+            ],
+            "response": [
+                "hindi naman e",
+                "dinaman may ginawa lang",
+                "dinaman",
+                "dinaman po",
+                "diman po",
+                "dipo",
+                "sorry naman po",
+                "sorry po, kamusta po",
+                "sorry"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Oi",
+                "Ui",
+                "oy",
+                "Oyy",
+                "oyy",
+                "uyy",
+                "hoy",
+                "hoyy"
+            ],
+            "response": [
+                "Ow",
+                "Oh",
+                "o bakit",
+                "Oh bakit po",
+                "bakit po",
+                "ano po yon?",
+                "ano po un",
+                "nupo un",
+                "ay bakit po"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hay",
+                "nako",
+                "naman"
+            ],
+            "response": [
+                "ano problema?",
+                "ano ba yon?",
+                "bakit?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "Oi"
+            ],
+            "response": [
+                "bakit po?",
+                "bakit",
+                "bat po",
+                "oh bakit po?"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "huy"
+            ],
+            "response": [
+                "oh"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "ay"
+            ],
+            "response": [
+                "ay ay"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "yo",
+                "yo",
+                "yo",
+                "yo"
+            ],
+            "response": [
+                "hahahah",
+                "haha"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "oi"
+            ],
+            "response": [
+                "ow"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "hey",
+                "ey",
+                "yey"
+            ],
+            "response": [
+                "ow whats up",
+                "sup!",
+                "yow!"
+            ],
+            "single_response": true,
+            "required_words": []
+        },
+        {
+            "patterns": [
+                "andito",
+                "nga",
+                "lang"
+            ],
+            "response": [
+                "ahhh hhehehe sorry"
+            ],
+            "single_response": true,
+            "required_words": []
         }
     ]
 }

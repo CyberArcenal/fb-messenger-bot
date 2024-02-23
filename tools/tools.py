@@ -44,6 +44,7 @@ def get_patterns():
                 continue
             if __input__ != "":
                 storage.extend(str(__input__).strip().split())
+                storage = [str(word).lower() for word in storage]
                 log(
                     f"Sender patterns: {storage} \033[1;93mskip to exit\033[1;92m")
                 return storage
