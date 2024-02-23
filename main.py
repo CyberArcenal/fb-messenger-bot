@@ -266,7 +266,7 @@ def Generate_Cookies():
     print("\033[1;92m║ \033[1;92mYour Password:")
     userpass = pick()
     cookies = open_cookies()
-    if "c_user" in cookies:
+    if "c_user" in cookies or "checkpoint" in cookies:
         clear_cookies()
     clear_logs()
     ACCOUNT = user
@@ -291,7 +291,11 @@ def check_message(message_object, author_id, uid):
         except Exception as e:
             print(f"Error in check_message: {e}")
             return None
-
+        
+#################################################################
+#################################################################
+#################################################################
+#################################################################
 
 class Facebook_messenger(Client):
     def TypingStatusStart(self, thread_id="", thread_type="", sleep: int = 2):
@@ -837,9 +841,9 @@ def test_bot():
     print("\033[1;92m║ \033[1;96m=== Chatbot Configuration Tool ===\033[0m")
     while True:
         user_input = input("\033[1;92m║ You: ")
-        print(user_input)
         if user_input.lower() == 'exit':
             print("Exiting the chat.")
+            time.sleep(2)
             break
 
         bot_response = mybot.get_response(user_input)

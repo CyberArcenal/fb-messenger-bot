@@ -6,7 +6,7 @@ def probability_test(message, word_patterns, single_response=False, required_wor
 
 
     for word in message:
-        if word in word_patterns:
+        if str(word).lower() in word_patterns:
             message_certainty += 1
 
  
@@ -45,11 +45,10 @@ def check_all_messages(message):
         except:
             required_words=[]
         random_reply=random.choice(reply['response'])
-        response(random_reply, reply['patterns'], bool(reply['single_response']), required_words)
+        response(random_reply,[str(word).lower() for word in reply['patterns']], bool(reply['single_response']), required_words)
 
     match = max(wordlist, key=wordlist.get)
-    print(wordlist)
-    print(f'Best match = {match} | Score: {wordlist[match]}')
+    print(f'\033[1;92m║ Best match = {match} | Score: {wordlist[match]}')
 
     return random.choice(unknown_response) if wordlist[match] < 1 else match
 
