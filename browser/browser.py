@@ -15,10 +15,15 @@ def wait():
         sys.stdout.flush()
         time.sleep(1)
 
+
 def create_log_dir():
-    try:os.mkdir("logs")
-    except OSError:pass
+    try:
+        os.mkdir("logs")
+    except OSError:
+        pass
     return
+
+
 def log_page(page: str):
     create_log_dir()
     try:
