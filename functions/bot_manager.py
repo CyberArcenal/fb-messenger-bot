@@ -114,46 +114,60 @@ def train_with_facebook_data():
             "\033[1;92m║ \033[1;97mFacebook chat file: \033[1;92m")
         print("\033[1;92m║ \033[1;97mParticipants is.")
         file = json.loads(open(__input__, "r").read())
+        print(line)
         for user in file["participants"]:
-            print(f"\033[1;92m║ \033[1;97m{user}")
+            print(f"\033[1;92m║ \033[1;93m{user['name']}")
+            print(line2)
         print(
             "\033[1;92m║ \t\033[1;93mPlease Review the chat\n\033[1;92m║\t if the message is chat pattern or your response")
         print(
-            "\033[1;92m║ \t\033[1;97mSkip if \033[1;93mYes \033[1;97mor Type \033[1;93m\"n\" \033[1;97mif \033[1;91mNo")
+            "\033[1;92m║ \t\033[1;97mSkip if \033[1;91mNo \033[1;97mor Type \033[1;93m\"y\" \033[1;97mif \033[1;93mYes")
         chat_list = file['messages']
         chat_list.reverse()
         last_message = 0
         for num, chat in enumerate(chat_list):
-            if last_message == num:
+            
+            if last_message > num+1:
                 continue
+            if "content" not in chat:
+                continue
+            print(line2)
             display_chat(chat=chat)
             isChat = input(
-                "\033[1;92m║ \033[1;93mThis is chat pattern?[skip/n]: \033[1;92m")
-            if isChat == "":
+                "\033[1;92m║ \033[1;93mTHIS IS CHAT PATTERN?[skip/n]: \033[1;92m")
+            if isChat == "y":
                 pattern = chat['content'].strip().split()
             else:
                 continue
             add = 1
+            response_storage = []
             while True:
+                print(line2)
                 display_chat(file["messages"][num+add])
                 isChatResponse = input(
-                    "\033[1;92m║ \033[1;94mThis is chat response?[skip/n/i]: \033[1;92m")
-                if isChatResponse == "":
+                    "\033[1;92m║ \033[1;94mTHIS IS CHAT RESPONSE?[y/n/i/a/save or s]: \033[1;92m")
+                if isChatResponse == "y":
                     response = file["messages"][num+add]['content']
-                    response_storage = []
                     response_storage.append(response)
-                    save_json(tags=tags, patterns=pattern, response=response_storage,
-                              single_response=True, required_words=[])
-                    print("\033[1;91m=========================================")
                     last_message = num+add
-                    break
+                    log(f"{response} is added in response list: {response_storage}")
+                    add+=1
                 elif isChatResponse == "i":
                     response = input(
                         "\033[1;92m║ \033[1;92mInput your custom response: ")
-                    response_storage = []
                     response_storage.append(response)
+                elif isChatResponse == "a":
+                    response = file["messages"][num+add]['content']
+                    response_storage.append(response)
+                    last_message = num+add
+                    log(f"{response} is added in response list: {response_storage}")
+                    add+=1
+                elif isChatResponse == "s" or isChatResponse == "save":
+                    log(f"Saving data \npattern: {pattern} response: {response_storage}")
+                    log("Required word")
+                    required_word = pick().split()
                     save_json(tags=tags, patterns=pattern, response=response_storage,
-                              single_response=True, required_words=[])
+                              single_response=True, required_words=required_word)
                     print("\033[1;91m=========================================")
                     last_message = num+add
                     break
@@ -166,9 +180,10 @@ def train_with_facebook_data():
 
 
 def display_chat(chat: dict):
+    list_ban = ["photos", "timestamp_ms", "is_geoblocked_for_viewer"]
     for key, value in chat.items():
-        print(f"\033[1;92m║ \033[1;96m{key}: {value}")
-
+        if key not in list_ban:
+            print(f"\033[1;92m║ \033[1;96m{key}: {value}")
 
 def bot_manager():
     os.system(__clr__())

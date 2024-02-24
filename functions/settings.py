@@ -7,6 +7,7 @@ from functions.ck import save_cookies_in_the_list, display_cookies, \
     save_cookies, clean_cookie, clear_cookies, clear_logs, \
     open_cookie_list, open_cookies, switch_cookiefile
 from functions.logger import log, log_error
+from icecream import ic
 import json, time
 
 def pick():
@@ -39,7 +40,40 @@ def Switch_Account():
           log_error(e)
           input()
           return_home()
+def display_cookiefile(cookies):
+    os.system(clr)
+    print(logo)
+    print(line)
+    print("\033[1;92m║")
+    ic(cookies)
+    print("\033[1;92m║")
+    print(line2)
+    print(f"\n{cookies}")
+    input(f"{yellow}Exit:")
+    View_Cookies()
 
+
+def View_Cookies():
+    os.system(__clr__())
+    print(logo)
+    print(line)
+    cookie_list = open_cookie_list()
+    for i in range(len(cookie_list['cookies_list'])):
+        to_display = cookie_list["cookies_list"][i]
+        print(
+            f"\033[1;92m║ {white}{str(i)}. \033[1;92mAccount: {to_display['account']}")
+        print(
+            f"\033[1;92m║ \033[1;92mDate Logged: {to_display['date_logged']}")
+        print(line2)
+    try:
+        a = pick()
+        if a == "":
+            settings()
+        display_cookiefile(cookie_list["cookies_list"][int(a)]["cookies"])
+    except Exception as e:
+        log_error(e)
+        input()
+        View_Cookies()
 def settings():
      os.system(__clr__())
      print(logo)
@@ -57,8 +91,9 @@ def settings():
           print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
           print(line)
      print("\033[1;92m║ \033[1;91m1. \033[1;94m—> \033[1;92mSwitch Account")
-     print("\033[1;92m║ \033[1;91m2. \033[1;94m—> \033[1;92mReset Bot")
-     print("\033[1;92m║ \033[1;91m3. \033[1;94m—> \033[1;92mUpdate")
+     print("\033[1;92m║ \033[1;91m2. \033[1;94m—> \033[1;92mView Cookies")
+     print("\033[1;92m║ \033[1;91m3. \033[1;94m—> \033[1;92mReset Bot")
+     print("\033[1;92m║ \033[1;91m4. \033[1;94m—> \033[1;92mUpdate")
      print("\033[1;92m║ \033[1;91m0. \033[1;94m—> \033[1;93mBack")
      settings_pick()
      return_home()
@@ -91,13 +126,13 @@ def settings_pick():
           if p == "1":
                Switch_Account()
           elif p == "2":
-               reset_bot()
+               View_Cookies()
           elif p == "3":
+               reset_bot()
+          elif p == "4":
                os.system("git pull")
                os.system("python3 main.py")
-          elif p == "4":
-               pass
           elif p == "0":
-               return
+               return_home()
           else:
                print("\033[1;92m║ \033[1;91minvalid input")
