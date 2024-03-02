@@ -44,15 +44,21 @@ python main.py
 [Specify any dependencies or prerequisites needed to run the bot.]
 
 ## Configuration
-1. go to the bot manager
-
-## Contribution Guidelines
-[Offer information on how others can contribute, report issues, or suggest improvements.]
+1. go to the bot manager.
+2. go to train bot.
+3. input tags, pick some.
+4. then input the chat pattern, this pattern is only one sentence it can be the expected chat pattern to be answered by user input response.
+5. and then put a response, in the response you can put any number, each input will be considered as a response sentence, input empty when done with putting the responses. 
+6. single response is true by default.
+7. required words this is the most expected chat pattern so that the bot knows that this is what the chat pattern is looking for so that it selects responses.
 
 ## Roadmap
-[Outline the future plans and features you aim to implement in the bot.]
+this repo is just my hobby.
 
 ## Screenshots
+### main
 ![Screenshot](https://github.com/CyberArcenal/fb-messenger-bot/blob/main/images/Screenshot_20240302-023553.jpg)
+### main
 ![Screenshot](https://github.com/CyberArcenal/fb-messenger-bot/blob/main/images/Screenshot_20240302-023613.jpg)
+## chatbot manager
 ![Screenshot](https://github.com/CyberArcenal/fb-messenger-bot/blob/main/images/Screenshot_20240302-023641.jpg)
