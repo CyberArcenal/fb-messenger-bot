@@ -1,6 +1,7 @@
 # fb-messenger-bot
 A versatile Facebook Messenger chat bot designed for easy customization to suit your conversation preferences.
-## Running The Script?
+## Installation and Usage.
+this script is run by python.
 ### termux
 ```
 pkg update -y
@@ -37,11 +38,8 @@ python main.py
 2. **Device Login Approval:** Streamlined login approval using your device; auto-detects approved notifications.
 3. **Chat Pattern Training:** Train the bot with specific chat patterns for tailored responses.
 
-## Installation and Usage
-[Include brief instructions on how to install and run the bot. Specify the programming language or framework used.]
-
 ## Dependencies
-[Specify any dependencies or prerequisites needed to run the bot.]
+install the dependencies in requirements.txt
 
 ## Configuration
 1. go to the bot manager.
