@@ -29,8 +29,8 @@ sudo apt update
 sudo apt upgrade
 git clone https://github.com/CyberArcenal/fb-messenger-bot.git
 cd fb-messenger-bot
-pip install -r requirements.txt
-python main.py
+pip3 install -r requirements.txt
+python3 main.py
 ```
 ## Disclaimer
 ⛔ I am not responsible for any actions taken with this repo. Caution is advised, and users should be responsible.
