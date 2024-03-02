@@ -7,11 +7,11 @@ from settings.version import __check__, __clr__
 from browser.browser import browser
 from settings.settings import blue, white, green, \
     red, yellow, line, line2, logo, DEBUG, \
-    session, ACCOUNT
+    session
 from functions.checker import check
 from settings.version import __check__, __clr__
 from settings.br import get_header
-from functions.ck import save_cookies_in_the_list, display_cookies, \
+from functions.ck import save_cookies_in_the_list, load_cookies, \
     save_cookies, clean_cookie, clear_cookies, clear_logs, \
     open_cookie_list, open_cookies, switch_cookiefile
 from functions.logger import log, log_error
@@ -43,6 +43,7 @@ clr = __clr__()
 header = get_header()
 RUN = True
 FACEBOOK_CLIENT: Client = None
+ACCOUNT = ""
 
 
 def pick():
@@ -113,7 +114,7 @@ class Facebook:
         sys.exit()
 
     def Continue(self):
-        global RUN
+        global RUN, ACCOUNT
         page: requests.Response = self.page
         while RUN:
             action_url = find_url(page.text)
@@ -127,11 +128,11 @@ class Facebook:
                     f"\033[1;92m║ {green}Facebook account login succesfully.")
                 print(65 * '\033[1;92m=')
                 RUN = False
-                display_cookies(account_name=ACCOUNT)
+                load_cookies(account_name=ACCOUNT)
             time.sleep(4)
 
     def bg_check_approval(self, data, action_url):
-        global RUN
+        global RUN, ACCOUNT
         data['approvals_code'] = ""
         while RUN:
             if check_approval(data=data):
@@ -141,7 +142,7 @@ class Facebook:
                     print(f"{green}Facebook account approve login succesfully.")
                     print(65 * '\033[1;92m=')
                     RUN = False
-                    display_cookies(account_name=ACCOUNT)
+                    load_cookies(account_name=ACCOUNT)
             time.sleep(7)
         return
 
@@ -173,11 +174,12 @@ class Facebook:
         self.Continue()
 
     def login(self):
-        global RUN
+        global RUN, ACCOUNT
         RUN = True
         list_error = ["log into facebook", "log into"]
         list_error_password = ["reset your password", "reset"]
         #### LOAD LOGIN PAGE######
+        ACCOUNT = self.account
         URL = 'https://m.facebook.com'
         page = browser(URL)
         data, url = create_form(response=page)
@@ -210,7 +212,7 @@ class Facebook:
             print(f"\033[1;92m║ {green}Facebook account login succesfully.")
             print(65 * '\033[1;92m=')
             RUN = False
-            display_cookies(account_name=ACCOUNT)
+            load_cookies(account_name=ACCOUNT)
             input()
             return_home()
 

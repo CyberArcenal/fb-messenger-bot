@@ -2,8 +2,8 @@ import os
 from settings.version import __check__, __clr__
 from settings.settings import blue, white, green, \
     red, yellow, line, line2, logo, DEBUG, \
-    session, ACCOUNT
-from functions.ck import save_cookies_in_the_list, display_cookies, \
+    session
+from functions.ck import save_cookies_in_the_list, load_cookies, \
     save_cookies, clean_cookie, clear_cookies, clear_logs, \
     open_cookie_list, open_cookies, switch_cookiefile
 from tools.tools import get_tag, get_patterns, get_response_patterns, \

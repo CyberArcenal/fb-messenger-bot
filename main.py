@@ -7,11 +7,11 @@ from settings.version import __check__, __clr__
 from browser.browser import browser
 from settings.settings import blue, white, green, \
     red, yellow, line, line2, logo, DEBUG, \
-    session, ACCOUNT
+    session
 from functions.checker import check
 from settings.version import __check__, __clr__
 from settings.br import get_header
-from functions.ck import save_cookies_in_the_list, display_cookies, \
+from functions.ck import save_cookies_in_the_list, load_cookies, \
     save_cookies, clean_cookie, clear_cookies, clear_logs, \
     open_cookie_list, open_cookies, switch_cookiefile
 from functions.logger import log, log_error
@@ -45,7 +45,6 @@ def pick():
     return str(user_input)
 
 def login_with_cookies():
-    global ACCOUNT, RUN
     dict_list = ["sb", "fr", "c_user", "datr", "xs"]
     os.system(clr)
     print(logo)
@@ -59,6 +58,7 @@ def login_with_cookies():
         with open("cookies/cookies.json", "w") as f:
             json.dump(data, f)
             f.close()
+            save_cookies_in_the_list(cookies=data, account_name=data["c_user"])
             log("Add cookies success.")
             input()
             home()
@@ -79,7 +79,6 @@ def get_cookie_input(cookie_name: str):
             return a        
 
 def login():
-    global ACCOUNT, RUN
     os.system(clr)
     print(logo)
     print(line)
@@ -103,7 +102,6 @@ def login_pick():
 
 
 def Generate_Cookies():
-    global ACCOUNT, RUN
     os.system(clr)
     print(logo)
     print(line)
@@ -115,7 +113,6 @@ def Generate_Cookies():
     if "c_user" in cookies or "checkpoint" in cookies:
         clear_cookies()
     clear_logs()
-    ACCOUNT = user
     login = Facebook(user, userpass)
     login.login()
 

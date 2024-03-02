@@ -1,5 +1,5 @@
 import requests
-version = "1.1.3"
+version = "1.2.0"
 ############################# COLOR#############################
 blue = "\033[1;96m"
 white = "\033[1;97m"
@@ -16,4 +16,3 @@ version """+str(version)+white
 ###############################################################
 session = requests.Session()
 DEBUG = False
-ACCOUNT = ""
