@@ -1,5 +1,7 @@
 # fb-messenger-bot
 A versatile Facebook Messenger chat bot designed for easy customization to suit your conversation preferences.
+## Privacy
+this repo is open source, clean and you can view the source code, it doesn't take your email or password.
 ## Installation and Usage.
 this script is run by python3+.
 ### termux
