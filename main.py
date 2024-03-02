@@ -147,10 +147,11 @@ def start_bot():
                 except KeyboardInterrupt:
                     log("User interrup exiting...")
                     time.sleep(3)
-                    sys.exit()
+                    home()
                 except Exception as e:
-                    print(f"\033[1;92m║ Error in listening: {e}")
+                    log_error(f"\033[1;92m║ Error in listening: {e}")
                     time.sleep(6)
+                    log(f"\033[1;92m║ Reconnecting: {e}")
     except AttributeError:
         input("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
         home()

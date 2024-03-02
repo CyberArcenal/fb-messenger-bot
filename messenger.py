@@ -38,6 +38,36 @@ import time
 import math
 import os
 import sys
+
+try:
+    import openai
+except:
+    try:
+        os.system("pip install openai")
+        import openai
+    except:
+        pass
+
+
+def chatGPT(query):
+    try:
+        api = json.load(open("openai_key.json", "r"))
+        client = openai.OpenAI(
+            # This is the default and can be omitted
+            # api_key=os.environ.get("OPENAI_API_KEY")
+            api_key=api['api_key'],
+        )
+        completion = client.chat.completions.create(
+            model="gpt-3.5-turbo-1106",
+            messages=[{"role": "user", "content": "Say this is a test"}],
+            stream=False,
+        )
+        return (completion.choices[0].message.content)
+    except Exception as e:
+        log_error(e)
+        return None
+
+
 def check_message(message_object, author_id, uid):
     if (author_id == uid):
         return None
@@ -55,6 +85,8 @@ def check_message(message_object, author_id, uid):
         except Exception as e:
             print(f"Error in check_message: {e}")
             return None
+
+
 class Facebook_messenger(Client):
     def TypingStatusStart(self, thread_id="", thread_type="", sleep: int = 2):
         self.setTypingStatus(TypingStatus.TYPING,
@@ -108,10 +140,19 @@ class Facebook_messenger(Client):
     ###################### MESSAGE PROCESS CENTER#############################
 
     def message_proccessing_unit(self, msg: str, thread_id, thread_type):
+        msg = msg.lower()
         try:
             if "search" in msg and "user" in msg or "search" in msg and "friend" in msg or "pakihanap" in msg and "si" in msg:
                 self.searchUser(msg=msg, thread_id=thread_id,
                                 thread_type=thread_type)
+            elif ("chatgpt" in msg or "darius ai" in msg or "darius" and "ai" in msg):
+                for word in ["chatgpt", "darius ai", "darius", "ai"]:
+                    msg = msg.replace(word, "")
+                reply = chatGPT(msg)
+                if reply is not None:
+                    reply = f"Darius AI: {reply}"
+                    self.send(Message(text=reply), thread_id=thread_id,
+                              thread_type=thread_type)
             elif ("download youtube" in msg.lower()):
                 self.download_on_youtube(
                     message=msg, thread_id=thread_id, thread_type=thread_type)
@@ -164,20 +205,22 @@ class Facebook_messenger(Client):
                 # Simulate typing
                 self.setTypingStatus(
                     TypingStatus.TYPING, thread_id=thread_id, thread_type=thread_type)
-                reply = mybot.get_response(msg)
-                # Stop simulating typing
-                if len(str(reply)) < 15:
-                    time.sleep(2)
-                elif len(str(reply)) > 20 and len(str(reply)) < 30:
-                    time.sleep(3)
-                else:
-                    time.sleep(4)
-                self.setTypingStatus(
-                    TypingStatus.STOPPED, thread_id=thread_id, thread_type=thread_type)
-                if str(reply) == "" or reply == None:
-                    return
-                self.send(Message(text=reply), thread_id=thread_id,
-                          thread_type=thread_type)
+                if "//video.xx.fbcdn" not in msg:
+                    reply = mybot.get_response(msg)
+                    # Stop simulating typing
+                    if len(str(reply)) < 15:
+                        time.sleep(2)
+                    elif len(str(reply)) > 20 and len(str(reply)) < 30:
+                        time.sleep(3)
+
+                    else:
+                        time.sleep(4)
+                    self.setTypingStatus(
+                        TypingStatus.STOPPED, thread_id=thread_id, thread_type=thread_type)
+                    if str(reply) == "" or reply == None:
+                        return
+                    self.send(Message(text=reply), thread_id=thread_id,
+                              thread_type=thread_type)
         except Exception as e:
             log_error(e)
 

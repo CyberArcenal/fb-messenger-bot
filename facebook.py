@@ -44,39 +44,56 @@ header = get_header()
 RUN = True
 FACEBOOK_CLIENT: Client = None
 
+
 def pick():
     user_input = input("\033[1;92m╚═════\033[1;91m>>>\033[1;97m ")
     return str(user_input)
 
+
 def check_approval(data):
-    url = "https://m.facebook.com/login/approvals/approved_machine_check/"
-    page = browser(url=url, data=data)
+    if RUN:
+        url = "https://m.facebook.com/login/approvals/approved_machine_check/"
+        page = browser(url=url, data=data)
 
-    try:
-        # Try to parse the JSON-like response body
-        # Remove the prefix "for (;;);"
-        json_data = page.text.replace("for (;;);", "")
+        try:
+            # Try to parse the JSON-like response body
+            # Remove the prefix "for (;;);"
+            json_data = page.text.replace("for (;;);", "")
 
-        # Parse the JSON-like response body
-        response_json = json.loads(json_data)
-        # Access specific values from the response
-        is_approved = True if 'True' in str(response_json) else False
-        # Print the values
-        if DEBUG:
-            print(f"is_approved: {is_approved}")
+            # Parse the JSON-like response body
+            response_json = json.loads(json_data)
+            # Access specific values from the response
+            is_approved = True if 'True' in str(response_json) else False
+            # Print the values
+            if DEBUG:
+                print(f"is_approved: {is_approved}")
 
-        if is_approved:
-            return True
-        else:
+            if is_approved:
+                return True
+            else:
+                return False
+        except json.decoder.JSONDecodeError as e:
+            # Handle the case where the response is not valid JSON
+            if DEBUG:
+                print(f"JSON Decode Error: {e}")
             return False
-    except json.decoder.JSONDecodeError as e:
-        # Handle the case where the response is not valid JSON
-        if DEBUG:
-            print(f"JSON Decode Error: {e}")
+    else:
         return False
+
+
 def return_home():
-     from main import home
-     home()
+    from main import home
+    home()
+
+def is_login_checker():
+    global RUN
+    while True:
+        if RUN == False:
+            input("\033[1;92m║ \033[1;93mExit.")
+            return_home()
+        else:
+            time.sleep(1)
+
 class Facebook:
     def __init__(self, account: str, password: str) -> None:
         clean_cookie()
@@ -111,8 +128,6 @@ class Facebook:
                 print(65 * '\033[1;92m=')
                 RUN = False
                 display_cookies(account_name=ACCOUNT)
-                input()
-                return_home()
             time.sleep(4)
 
     def bg_check_approval(self, data, action_url):
@@ -127,8 +142,6 @@ class Facebook:
                     print(65 * '\033[1;92m=')
                     RUN = False
                     display_cookies(account_name=ACCOUNT)
-                    input()
-                    return_home()
             time.sleep(7)
         return
 
@@ -142,12 +155,13 @@ class Facebook:
             code = input(f"\033[1;92m║ {blue}input 6 digit code: {white}")
             if len(str(code)) > 5:
                 break
+            elif RUN == False:
+                return
             else:
                 print(
                     f"\033[1;92m║ {red}Please enter login code to continue.{white}")
         if RUN == False:
-            input()
-            return_home()
+            return
         data['approvals_code'] = code
         self.page: requests.Response = browser(url=action_url, data=data)
         title = get_page_title(page_text=self.page.text)
@@ -160,6 +174,7 @@ class Facebook:
 
     def login(self):
         global RUN
+        RUN = True
         list_error = ["log into facebook", "log into"]
         list_error_password = ["reset your password", "reset"]
         #### LOAD LOGIN PAGE######
@@ -206,8 +221,11 @@ class Facebook:
             thread = threading.Thread(
                 target=self.bg_check_approval, args=(data, action_url))
             thread1 = threading.Thread(target=self.two_factor_mode)
+            thread2 = threading.Thread(target=is_login_checker)
             thread1.start()
             thread.start()
+            thread2.start()
+            
         elif title == "Review Recent Login" or 'submit[Continue]' in self.page.text:
             self.Continue()
         elif "checkpoint_title" in self.page.text:
