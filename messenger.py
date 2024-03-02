@@ -1,6 +1,3 @@
-from fbchat import Client, log, _graphql
-from fbchat.models import *
-from fbchat.models import ThreadType
 from functions.logger import log, log_error
 from settings.br import get_user_agent, get_header
 from settings.version import __check__, __clr__
@@ -26,10 +23,6 @@ from functions.bot_manager import bot_manager
 from functions.search_user import get_limit
 from facebook import Facebook
 import mybot
-from icecream import ic
-import concurrent.futures
-import wolframalpha
-import sqlite3
 import threading
 import json
 import random
@@ -38,7 +31,19 @@ import time
 import math
 import os
 import sys
-
+try:
+    from fbchat import Client, log, _graphql
+    from fbchat.models import *
+    from fbchat.models import ThreadType
+    from icecream import ic
+    import concurrent.futures
+    import wolframalpha
+except:
+    os.system("pip install -r requirements.txt")
+try:
+    import sqlite3
+except:
+    pass
 try:
     import openai
 except:
