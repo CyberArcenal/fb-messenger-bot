@@ -58,13 +58,13 @@ def clean_cookie():
     return
 
 
-def display_cookies(account_name: str):
+def load_cookies(account_name: str):
     clean_cookie()
     with open("cookies/cookies.json", "r") as c:
         cookies = json.loads(c.read())
-        ic(cookies)
+        #ic(cookies)
         save_cookies_in_the_list(cookies=cookies, account_name=account_name)
-    print(f"{yellow}You can open cookies in {green}cookies/cookies.json{green}\nor you can open view cookies to display list of cookies.")
+    # print(f"{yellow}You can open cookies in {green}cookies/cookies.json{green}\nor you can open view cookies to display list of cookies.")
 
 
 def clear_cookies():

@@ -4,11 +4,11 @@ from settings.version import __check__, __clr__
 from browser.browser import browser
 from settings.settings import blue, white, green, \
     red, yellow, line, line2, logo, DEBUG, \
-    session, ACCOUNT
+    session
 from functions.checker import check
 from settings.version import __check__, __clr__
 from settings.br import get_header
-from functions.ck import save_cookies_in_the_list, display_cookies, \
+from functions.ck import save_cookies_in_the_list, \
     save_cookies, clean_cookie, clear_cookies, clear_logs, \
     open_cookie_list, open_cookies, switch_cookiefile
 from functions.logger import log, log_error
