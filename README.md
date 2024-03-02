@@ -1,7 +1,7 @@
 # fb-messenger-bot
 A versatile Facebook Messenger chat bot designed for easy customization to suit your conversation preferences.
 ## Installation and Usage.
-this script is run by python.
+this script is run by python3+.
 ### termux
 ```
 pkg update -y
