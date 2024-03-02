@@ -1,10 +1,12 @@
 # fb-messenger-bot
 A versatile Facebook Messenger chat bot designed for easy customization to suit your conversation preferences.
 ## Running The Script?
-``git clone https://github.com/CyberArcenal/fb-messenger-bot
+```
+git clone https://github.com/CyberArcenal/fb-messenger-bot
 cd fb-messenger-bot
 pip3 install -r requirements.txt
-python3 main.py```
+python3 main.py
+```
 ## Disclaimer
 ⛔ I am not responsible for any actions taken with this repo. Caution is advised, and users should be responsible.
 
