@@ -149,18 +149,18 @@ class Facebook:
     def two_factor_mode(self):
         global RUN
         action_url, data = create_form_2fa(self.page)
-        print(f"\033[1;92m║ {green}Enter login code to continue{white}")
+        print(f"\033[1;92m║ {green}Enter login code to continue{white}\n")
         print(
-            f"\033[1;92m║ {green}You can approve login by other device.{white}")
+            f"\033[1;92m║ {green}You can approve login by other device.{white}\n")
         while RUN:
-            code = input(f"\033[1;92m║ {blue}input 6 digit code: {white}")
+            code = input(f"\r\r\033[1;92m║ {blue}input 6 digit code: {white}\n")
             if len(str(code)) > 5:
                 break
             elif RUN == False:
                 return
             else:
                 print(
-                    f"\033[1;92m║ {red}Please enter login code to continue.{white}")
+                    f"\r\r\033[1;92m║ {red}Please enter login code to continue.{white}\n")
         if RUN == False:
             return
         data['approvals_code'] = code
