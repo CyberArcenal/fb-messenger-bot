@@ -137,6 +137,7 @@ def start_bot():
     FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
     display_account_info(client=FACEBOOK_CLIENT)
     try:
+        log("Checking account..")
         if FACEBOOK_CLIENT.isLoggedIn():
             while True:
                 try:
