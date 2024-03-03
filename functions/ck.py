@@ -23,15 +23,14 @@ def user_already_exist(c_user: str) -> bool:
 
 
 
-def update_user(cookies: dict):
+def update_user(cookies: dict, account_name: str):
     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     data = open_cookie_list()
     for i in data['cookies_list']:
         if str(i['cookies']['c_user']) == str(cookies['c_user']):
-            user_cookies = i['cookies']
-            for key, value in cookies.items():
-                user_cookies[key] = value
+            i['cookies'].update(cookies)
             i['date_logged'] = str(current_time)
+            i['account'] = account_name
     with open('cookies/cookiesList.json', 'w') as f:
         json.dump(data, f, indent=4)
 
@@ -40,7 +39,7 @@ def save_cookies_in_the_list(cookies: dict, account_name: str):
     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     data = open_cookie_list()
     if user_already_exist(c_user=cookies['c_user']):
-        update_user(cookies=cookies)
+        update_user(cookies=cookies, account_name=account_name)
         return True
     else:
         entry = {

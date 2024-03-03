@@ -120,35 +120,36 @@ def Generate_Cookies():
     login.login()
 
 
-def display_account_info(client: Client):
+def display_account_info():
+    global FACEBOOK_CLIENT
     # Get user details
-    user_details = client.fetchUserInfo(client.uid)
-    user = user_details[client.uid]
-
+    user_details = FACEBOOK_CLIENT.fetchUserInfo(FACEBOOK_CLIENT.uid)
+    user = user_details[FACEBOOK_CLIENT.uid]
     # Print user information
-    print("\r\r\r\033[1;92m║User ID:", user.uid)
-    print("\033[1;92m║Name:", user.name)
-    print("\033[1;92m║First Name:", user.first_name)
-    print("\033[1;92m║Last Name:", user.last_name)
+    print("\r\r\r\033[1;92m║ User ID:", user.uid)
+    print("\033[1;92m║ Name:", user.name)
+    print("\033[1;92m║ First Name:", user.first_name)
+    print("\033[1;92m║ Last Name:", user.last_name)
 
 
 
 def start_bot():
     global FACEBOOK_CLIENT
-    sys.stdout.write("\033[1000D\033[1;92m║ Loggining account...\n")
-    sys.stdout.flush()
-    cookies = json.loads(open("cookies/cookies.json", "r").read())
-    try:
-        FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
+    os.system(clr)
+    # log("Loggining account...")
+    # cookies = json.loads(open("cookies/cookies.json", "r").read())
+    # try:
+    #     FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
 
-    except Exception as e:
-        log_error(e)
-        input("\033[1;92m║ \033[1;93mExit.")
-        home()
+    # except Exception as e:
+    #     log_error(e)
+    #     input("\033[1;92m║ \033[1;93mExit.")
+    #     home()
     try:
         log("Checking account..")
         if FACEBOOK_CLIENT.isLoggedIn():
-            display_account_info(client=FACEBOOK_CLIENT)
+            display_account_info()
+            update_and_save_cookies()
             while True:
                 try:
                     FACEBOOK_CLIENT.listen()
@@ -171,7 +172,6 @@ def update_and_save_cookies():
     log("Saving session.")
     # I-save ang current cookies
     current_cookies = FACEBOOK_CLIENT.getSession()
-    print(current_cookies)
     save_session_cookies(session_cookies=current_cookies)
     # Itigil ang client.listen()
     FACEBOOK_CLIENT.stopListening()
@@ -193,19 +193,32 @@ def save_session_cookies(session_cookies: dict = None):
 
 
 def home():
-    os.system(clr)
-    print(logo)
-    print(line)
+    global FACEBOOK_CLIENT
     try:
         cookies = json.loads(open("cookies/cookies.json", "r").read())
         if cookies['c_user'] != "" or cookies['c_user'] != None:
-            pass
+            
+            if FACEBOOK_CLIENT == None:
+                log("Loading...")
+                FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
+            else:
+                log("Already login")
+            os.system(clr)
+            print(logo)
+            print(line)
+            display_account_info()
+            update_and_save_cookies()
+            print(line)
         else:
+            os.system(clr)
+            print(logo)
+            print(line)
             print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
             print(line)
     except Exception as e:
-        # log_error(e.args)
-        # print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
+        os.system(clr)
+        print(logo)
+        print(line)
         print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
         print(line)
     print("\033[1;92m║ \033[1;91m1. \033[1;94m—> \033[1;92mStart Chat-Bot")
@@ -217,13 +230,14 @@ def home():
 
 
 def home_pick():
+    global FACEBOOK_CLIENT
     p = pick()
     if p == "1":
         start_bot()
     elif p == "2":
         bot_manager()
     elif p == "3":
-        settings()
+        settings(client=FACEBOOK_CLIENT)
     elif p == "4":
         login()
     elif p == "0":

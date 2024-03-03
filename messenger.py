@@ -31,6 +31,7 @@ import time
 import math
 import os
 import sys
+import re
 try:
     from fbchat import Client, log, _graphql
     from fbchat.models import *
@@ -96,11 +97,10 @@ def check_message(message_object, author_id, uid):
 class Facebook_messenger(Client):
     def display_session_cookies(self):
         try:
-            print(self.getSession())
-            current_cookies = self.getSession().cookies
+            current_cookies = self.getSession()
             log(current_cookies)
         except AttributeError:
-            log("Error: 'getSession()' did not return a valid session object.")
+            log_error("Error: 'getSession()' did not return a valid session object.")
         
     def TypingStatusStart(self, thread_id="", thread_type="", sleep: int = 2):
         self.setTypingStatus(TypingStatus.TYPING,
@@ -155,7 +155,6 @@ class Facebook_messenger(Client):
 
     def message_proccessing_unit(self, msg: str, thread_id, thread_type):
         msg = msg.lower()
-        self.display_session_cookies()
         try:
             if "search" in msg and "user" in msg or "search" in msg and "friend" in msg or "pakihanap" in msg and "si" in msg:
                 self.searchUser(msg=msg, thread_id=thread_id,

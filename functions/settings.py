@@ -3,6 +3,7 @@ from settings.version import __check__, __clr__
 from settings.settings import blue, white, green, \
     red, yellow, line, line2, logo, DEBUG, \
     session
+from fbchat import Client
 from functions.ck import save_cookies_in_the_list, load_cookies, \
     save_cookies, clean_cookie, clear_cookies, clear_logs, \
     open_cookie_list, open_cookies, switch_cookiefile
@@ -10,6 +11,7 @@ from functions.logger import log, log_error
 from icecream import ic
 import json, time
 clr = __clr__()
+FACEBOOK_CLIENT:Client = None
 
 def pick():
     user_input = input("\033[1;92m╚═════\033[1;91m>>>\033[1;97m ")
@@ -75,7 +77,10 @@ def View_Cookies():
         log_error(e)
         input()
         View_Cookies()
-def settings():
+def settings(client:Client=None):
+     global FACEBOOK_CLIENT
+     if client:
+          FACEBOOK_CLIENT = client
      os.system(__clr__())
      print(logo)
      print(line)
@@ -94,7 +99,8 @@ def settings():
      print("\033[1;92m║ \033[1;91m1. \033[1;94m—> \033[1;92mSwitch Account")
      print("\033[1;92m║ \033[1;91m2. \033[1;94m—> \033[1;92mView Cookies")
      print("\033[1;92m║ \033[1;91m3. \033[1;94m—> \033[1;92mReset Bot")
-     print("\033[1;92m║ \033[1;91m4. \033[1;94m—> \033[1;92mUpdate")
+     print("\033[1;92m║ \033[1;91m4. \033[1;94m—> \033[1;92mLog-out")
+     print("\033[1;92m║ \033[1;91m5. \033[1;94m—> \033[1;92mUpdate")
      print("\033[1;92m║ \033[1;91m0. \033[1;94m—> \033[1;93mBack")
      settings_pick()
      return_home()
@@ -119,7 +125,30 @@ def reset_bot():
           print("\033[1;92m║ \033[1;92mDelete canceled.")
           input()
           return_home()
-          
+
+def remove_current_user(c_user: str):
+    data = open_cookie_list()
+    data['cookies_list'] = [i for i in data['cookies_list'] if i['cookies']['c_user'] != c_user]
+    with open('cookies/cookiesList.json', 'w') as f:
+        json.dump(data, f, indent=4)
+
+def log_out():
+     global FACEBOOK_CLIENT
+     cookies = open_cookies()
+     log("Logouting account...")
+     try:
+          if FACEBOOK_CLIENT.logout():
+               remove_current_user(c_user=cookies['c_user'])
+               clear_cookies()
+               input("\033[1;92m║ Logout success.")
+               return_home()
+          else:
+               input("\033[1;92m║ \033[1;93mSomething went wrong.")
+               return_home()
+     except Exception as e:
+          log_error(e)
+          input("\033[1;92m║ \033[1;93mSomething went wrong.")
+          return_home()
 
 def settings_pick():
      while True:
@@ -131,6 +160,8 @@ def settings_pick():
           elif p == "3":
                reset_bot()
           elif p == "4":
+               log_out()
+          elif p == "5":
                os.system("git pull")
                os.system("python3 main.py")
           elif p == "0":
