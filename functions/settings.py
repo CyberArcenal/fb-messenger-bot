@@ -175,7 +175,6 @@ def settings_pick():
                log_out()
           elif p == "5":
                os.system("git pull")
-               os.system("python3 main.py")
           elif p == "0":
                return_home()
           else:
