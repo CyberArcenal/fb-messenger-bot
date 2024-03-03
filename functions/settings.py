@@ -143,11 +143,23 @@ def log_out():
                input("\033[1;92m║ Logout success.")
                return_home()
           else:
-               input("\033[1;92m║ \033[1;93mSomething went wrong.")
+               input("\033[1;92m║ \033[1;93mCan't Logout account.")
+               print("\033[1;92m║ Delete cookies?[y/n]")
+               choose = pick()
+               if choose.lower() == "y":
+                    remove_current_user(c_user=cookies['c_user'])
+                    clear_cookies()
+                    input("\033[1;92m║ remove success.")
                return_home()
      except Exception as e:
           log_error(e)
           input("\033[1;92m║ \033[1;93mSomething went wrong.")
+          print("\033[1;92m║ Delete cookies?[y/n]")
+          choose = pick()
+          if choose.lower() == "y":
+               remove_current_user(c_user=cookies['c_user'])
+               clear_cookies()
+               input("\033[1;92m║ remove success.")
           return_home()
 
 def settings_pick():
