@@ -48,11 +48,7 @@ except:
 try:
     import openai
 except:
-    try:
-        os.system("pip install openai")
-        import openai
-    except:
-        pass
+    pass
 
 
 
