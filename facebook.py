@@ -125,9 +125,10 @@ class Facebook:
             page: requests.Response = browser(
                 url=action_url, data=data, redirect=False, print_title=True)
             if "c_user" in page.cookies.get_dict():
-                print(
-                    f"\033[1;92m║ {green}Facebook account login succesfully.")
-                print(65 * '\033[1;92m=')
+                with console_lock:
+                    print(
+                        f"\033[1;92m║ {green}Facebook account login succesfully.")
+                    print(65 * '\033[1;92m=')
                 RUN = False
                 load_cookies(account_name=ACCOUNT)
             time.sleep(4)
@@ -140,8 +141,9 @@ class Facebook:
                 page: requests.Response = browser(
                     url=action_url, data=data, redirect=False)
                 if "c_user" in page.cookies.get_dict():
-                    print(f"{green}Facebook account approve login succesfully.")
-                    print(65 * '\033[1;92m=')
+                    with console_lock:
+                        print(f"{green}Facebook account approve login succesfully.")
+                        print(65 * '\033[1;92m=')
                     RUN = False
                     load_cookies(account_name=ACCOUNT)
             time.sleep(7)
@@ -154,7 +156,8 @@ class Facebook:
             print(f"\033[1;92m║ {green}Enter login code to continue{white}")
             print(f"\033[1;92m║ {green}You can approve login by other device.{white}")
         while RUN:
-            code = input(f"\033[1;92m║ {blue}input 6 digit code: {white}")
+            with console_lock:
+                code = input(f"\033[1;92m║ {blue}input 6 digit code: {white}")
             if len(str(code)) > 5:
                 break
             elif RUN == False:
