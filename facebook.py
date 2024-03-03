@@ -44,7 +44,8 @@ header = get_header()
 RUN = True
 FACEBOOK_CLIENT: Client = None
 ACCOUNT = ""
-
+# Create a threading lock
+console_lock = threading.Lock()
 
 def pick():
     user_input = input("\033[1;92m╚═════\033[1;91m>>>\033[1;97m ")
@@ -149,18 +150,18 @@ class Facebook:
     def two_factor_mode(self):
         global RUN
         action_url, data = create_form_2fa(self.page)
-        print(f"\033[1;92m║ {green}Enter login code to continue{white}\n")
-        print(
-            f"\033[1;92m║ {green}You can approve login by other device.{white}\n")
+        with console_lock:
+            print(f"\033[1;92m║ {green}Enter login code to continue{white}")
+            print(f"\033[1;92m║ {green}You can approve login by other device.{white}")
         while RUN:
-            code = input(f"\r\r\033[1;92m║ {blue}input 6 digit code: {white}\n")
+            code = input(f"\033[1;92m║ {blue}input 6 digit code: {white}")
             if len(str(code)) > 5:
                 break
             elif RUN == False:
                 return
             else:
-                print(
-                    f"\r\r\033[1;92m║ {red}Please enter login code to continue.{white}\n")
+                with console_lock:
+                    print(f"\033[1;92m║ {red}Please enter login code to continue.{white}")
         if RUN == False:
             return
         data['approvals_code'] = code
