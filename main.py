@@ -143,6 +143,9 @@ def start_bot():
                 try:
                     FACEBOOK_CLIENT.listen()
                 except KeyboardInterrupt:
+                    c = FACEBOOK_CLIENT.getSession().session_cookies
+                    save_cookies_in_the_list(cookies=c)
+                    save_cookies()
                     log("User interrup exiting...")
                     time.sleep(3)
                     home()
