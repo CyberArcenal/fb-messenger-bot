@@ -96,6 +96,7 @@ def is_login_checker():
         if RUN == False:
             input("\033[1;92m║ \033[1;93mExit.")
             return_home()
+            break
         else:
             time.sleep(1)
 

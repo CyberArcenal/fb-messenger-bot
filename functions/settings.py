@@ -9,7 +9,7 @@ from functions.ck import save_cookies_in_the_list, load_cookies, \
     open_cookie_list, open_cookies, switch_cookiefile
 from functions.logger import log, log_error
 from icecream import ic
-import json, time
+import json, time, sys
 clr = __clr__()
 FACEBOOK_CLIENT:Client = None
 
