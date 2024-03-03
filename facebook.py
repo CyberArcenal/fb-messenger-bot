@@ -49,7 +49,8 @@ console_lock = threading.Lock()
 
 
 def pick():
-    user_input = input("\033[1;92m╚═════\033[1;91m>>>\033[1;97m ")
+    with console_lock:
+        user_input = input("\033[1;92m╚═════\033[1;91m>>>\033[1;97m ")
     return str(user_input)
 
 
@@ -128,10 +129,9 @@ class Facebook:
             page: requests.Response = browser(
                 url=action_url, data=data, redirect=False, print_title=True)
             if "c_user" in page.cookies.get_dict():
-                with console_lock:
-                    print(
-                        f"\033[1;92m║ {green}Facebook account login succesfully.")
-                    print(65 * '\033[1;92m=')
+                print(
+                    f"\r\r\r\r\033[1;92m║ {green}Facebook account login succesfully.")
+                print(65 * '\033[1;92m=')
                 RUN = False
                 load_cookies(account_name=ACCOUNT)
             time.sleep(4)
@@ -144,10 +144,9 @@ class Facebook:
                 page: requests.Response = browser(
                     url=action_url, data=data, redirect=False)
                 if "c_user" in page.cookies.get_dict():
-                    with console_lock:
-                        print(
-                            f"{green}Facebook account approve login succesfully.")
-                        print(65 * '\033[1;92m=')
+                    print(
+                        f"\r\r\r\r{green}Facebook account approve login succesfully.")
+                    print(65 * '\033[1;92m=')
                     RUN = False
                     load_cookies(account_name=ACCOUNT)
             time.sleep(7)
@@ -220,7 +219,7 @@ class Facebook:
             else:
                 break
         if "c_user" in self.page.cookies.get_dict():
-            print(f"\033[1;92m║ {green}Facebook account login succesfully.")
+            print(f"\r\r\r\r\033[1;92m║ {green}Facebook account login succesfully.")
             print(65 * '\033[1;92m=')
             RUN = False
             load_cookies(account_name=ACCOUNT)
