@@ -47,6 +47,7 @@ ACCOUNT = ""
 # Create a threading lock
 console_lock = threading.Lock()
 
+
 def pick():
     user_input = input("\033[1;92m╚═════\033[1;91m>>>\033[1;97m ")
     return str(user_input)
@@ -87,6 +88,7 @@ def return_home():
     from main import home
     home()
 
+
 def is_login_checker():
     global RUN
     while True:
@@ -95,6 +97,7 @@ def is_login_checker():
             return_home()
         else:
             time.sleep(1)
+
 
 class Facebook:
     def __init__(self, account: str, password: str) -> None:
@@ -142,7 +145,8 @@ class Facebook:
                     url=action_url, data=data, redirect=False)
                 if "c_user" in page.cookies.get_dict():
                     with console_lock:
-                        print(f"{green}Facebook account approve login succesfully.")
+                        print(
+                            f"{green}Facebook account approve login succesfully.")
                         print(65 * '\033[1;92m=')
                     RUN = False
                     load_cookies(account_name=ACCOUNT)
@@ -154,17 +158,20 @@ class Facebook:
         action_url, data = create_form_2fa(self.page)
         with console_lock:
             print(f"\033[1;92m║ {green}Enter login code to continue{white}")
-            print(f"\033[1;92m║ {green}You can approve login by other device.{white}")
+            print(
+                f"\033[1;92m║ {green}You can approve login by other device.{white}")
         while RUN:
             with console_lock:
-                code = input(f"\033[1;92m║ {blue}input 6 digit code: {white}")
+                print(f"\033[1;92m║ {blue}input 6 digit code: {white}")
+            code = pick()
             if len(str(code)) > 5:
                 break
             elif RUN == False:
                 return
             else:
                 with console_lock:
-                    print(f"\033[1;92m║ {red}Please enter login code to continue.{white}")
+                    print(
+                        f"\033[1;92m║ {red}Please enter login code to continue.{white}")
         if RUN == False:
             return
         data['approvals_code'] = code
@@ -228,10 +235,12 @@ class Facebook:
                 target=self.bg_check_approval, args=(data, action_url))
             thread1 = threading.Thread(target=self.two_factor_mode)
             thread2 = threading.Thread(target=is_login_checker)
-            thread1.start()
             thread.start()
+            time.sleep(1)
+            thread1.start()
+            time.sleep(1)
             thread2.start()
-            
+
         elif title == "Review Recent Login" or 'submit[Continue]' in self.page.text:
             self.Continue()
         elif "checkpoint_title" in self.page.text:
