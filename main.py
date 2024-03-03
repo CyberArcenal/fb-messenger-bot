@@ -44,6 +44,7 @@ def pick():
     user_input = input("\033[1;92m╚═════\033[1;91m>>>\033[1;97m ")
     return str(user_input)
 
+
 def login_with_cookies():
     dict_list = ["sb", "fr", "c_user", "datr", "xs"]
     os.system(clr)
@@ -67,6 +68,7 @@ def login_with_cookies():
         input()
         home()
 
+
 def get_cookie_input(cookie_name: str):
     while True:
         a = pick()
@@ -76,7 +78,8 @@ def get_cookie_input(cookie_name: str):
         elif a == "exit":
             home()
         else:
-            return a        
+            return a
+
 
 def login():
     os.system(clr)
@@ -129,24 +132,29 @@ def display_account_info(client: Client):
     print("\033[1;92m║Last Name:", user.last_name)
 
 
+
 def start_bot():
     global FACEBOOK_CLIENT
-    sys.stdout.write("\033[1000D\033[1;92m║ Loggining account...")
+    sys.stdout.write("\033[1000D\033[1;92m║ Loggining account...\n")
     sys.stdout.flush()
     cookies = json.loads(open("cookies/cookies.json", "r").read())
-    FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
-    display_account_info(client=FACEBOOK_CLIENT)
+    try:
+        FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
+
+    except Exception as e:
+        log_error(e)
+        input("\033[1;92m║ \033[1;93mExit.")
+        home()
     try:
         log("Checking account..")
         if FACEBOOK_CLIENT.isLoggedIn():
+            display_account_info(client=FACEBOOK_CLIENT)
             while True:
                 try:
                     FACEBOOK_CLIENT.listen()
                 except KeyboardInterrupt:
-                    c = FACEBOOK_CLIENT.getSession().session_cookies
-                    save_cookies_in_the_list(cookies=c)
-                    save_cookies()
                     log("User interrup exiting...")
+                    update_and_save_cookies()
                     time.sleep(3)
                     home()
                 except Exception as e:
@@ -156,6 +164,32 @@ def start_bot():
     except AttributeError:
         input("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
         home()
+
+
+def update_and_save_cookies():
+    global FACEBOOK_CLIENT
+    log("Saving session.")
+    # I-save ang current cookies
+    current_cookies = FACEBOOK_CLIENT.getSession()
+    print(current_cookies)
+    save_session_cookies(session_cookies=current_cookies)
+    # Itigil ang client.listen()
+    FACEBOOK_CLIENT.stopListening()
+
+def get_current_user_account_name():
+    global FACEBOOK_CLIENT
+    # Get user details
+    user_details = FACEBOOK_CLIENT.fetchUserInfo(FACEBOOK_CLIENT.uid)
+    user = user_details[FACEBOOK_CLIENT.uid]
+    return user.name
+
+def save_session_cookies(session_cookies: dict = None):
+    c = open_cookies()
+    if session_cookies:
+        save_cookies(cookies=c, session_cookies=session_cookies)
+        save_cookies_in_the_list(session_cookies, account_name=get_current_user_account_name())
+    else:
+        log_error("No session cookies")
 
 
 def home():

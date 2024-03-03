@@ -54,6 +54,7 @@ except:
         pass
 
 
+
 def chatGPT(query):
     try:
         api = json.load(open("openai_key.json", "r"))
@@ -93,6 +94,14 @@ def check_message(message_object, author_id, uid):
 
 
 class Facebook_messenger(Client):
+    def display_session_cookies(self):
+        try:
+            print(self.getSession())
+            current_cookies = self.getSession().cookies
+            log(current_cookies)
+        except AttributeError:
+            log("Error: 'getSession()' did not return a valid session object.")
+        
     def TypingStatusStart(self, thread_id="", thread_type="", sleep: int = 2):
         self.setTypingStatus(TypingStatus.TYPING,
                              thread_id=thread_id, thread_type=thread_type)
@@ -146,6 +155,7 @@ class Facebook_messenger(Client):
 
     def message_proccessing_unit(self, msg: str, thread_id, thread_type):
         msg = msg.lower()
+        self.display_session_cookies()
         try:
             if "search" in msg and "user" in msg or "search" in msg and "friend" in msg or "pakihanap" in msg and "si" in msg:
                 self.searchUser(msg=msg, thread_id=thread_id,
