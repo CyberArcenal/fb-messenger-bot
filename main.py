@@ -197,12 +197,7 @@ def home():
     try:
         cookies = json.loads(open("cookies/cookies.json", "r").read())
         if cookies['c_user'] != "" or cookies['c_user'] != None:
-            
-            if FACEBOOK_CLIENT == None:
-                log("Loading...")
-                FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
-            else:
-                log("Already login")
+            FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
             os.system(clr)
             print(logo)
             print(line)
