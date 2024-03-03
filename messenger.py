@@ -31,6 +31,7 @@ import time
 import math
 import os
 import sys
+import re
 try:
     from fbchat import Client, log, _graphql
     from fbchat.models import *
@@ -52,6 +53,7 @@ except:
         import openai
     except:
         pass
+
 
 
 def chatGPT(query):
@@ -93,6 +95,13 @@ def check_message(message_object, author_id, uid):
 
 
 class Facebook_messenger(Client):
+    def display_session_cookies(self):
+        try:
+            current_cookies = self.getSession()
+            log(current_cookies)
+        except AttributeError:
+            log_error("Error: 'getSession()' did not return a valid session object.")
+        
     def TypingStatusStart(self, thread_id="", thread_type="", sleep: int = 2):
         self.setTypingStatus(TypingStatus.TYPING,
                              thread_id=thread_id, thread_type=thread_type)
