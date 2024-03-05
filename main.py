@@ -197,6 +197,7 @@ def home():
     try:
         cookies = json.loads(open("cookies/cookies.json", "r").read())
         if cookies['c_user'] != "" or cookies['c_user'] != None:
+            log("Loading...")
             FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
             os.system(clr)
             print(logo)
@@ -211,6 +212,8 @@ def home():
             print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
             print(line)
     except Exception as e:
+        log(e)
+        input()
         os.system(clr)
         print(logo)
         print(line)

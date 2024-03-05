@@ -71,23 +71,46 @@ def chatGPT(query):
         return None
 
 
+# def check_message(message_object, author_id, uid):
+#     if (author_id == uid):
+#         return None
+#     try:
+#         log(message_object)
+#         msg = str(message_object).split(",")[15][14:-1]
+#         print("user chat: ",msg)
+#         if "//video.xx.fbcdn" in msg:
+#             return msg
+#         else:
+#             return str(message_object).split(",")[19][20:-1]
+#     except Exception as e:
+#         try:
+#             msg = message_object.text.lower()
+#             return msg
+#         except:
+#             return None
 def check_message(message_object, author_id, uid):
-    if (author_id == uid):
+    if author_id == uid:
         return None
     try:
-        msg = str(message_object).split(",")[15][14:-1]
-
-        if "//video.xx.fbcdn" in msg:
-            return msg
+        if message_object.sticker:
+            # Handle sticker
+            return str(message_object.sticker)
+        elif message_object.attachments:
+            for attachment in message_object.attachments:
+                if attachment.type == "video":
+                    # Handle video
+                    return f"Video: {attachment.url}"
+                elif attachment.type == "like":
+                    # Handle like
+                    return "Like"
+        elif message_object.text:
+            # Handle text message
+            return message_object.text.lower()
         else:
-            return str(message_object).split(",")[19][20:-1]
-    except Exception as e:
-        try:
-            msg = message_object.text.lower()
-            return msg
-        except Exception as e:
-            print(f"Error in check_message: {e}")
             return None
+    except Exception as e:
+        print(f"Error in check_message: {e}")
+        return None
 
 
 class Facebook_messenger(Client):
@@ -150,14 +173,6 @@ class Facebook_messenger(Client):
     ###################### MESSAGE PROCESS CENTER#############################
 
     def message_proccessing_unit(self, msg: str, thread_id, thread_type):
-        try:
-            if isinstance(msg, str):
-                msg = msg.lower()
-        except Exception as e:
-            # Handle exceptions related to emojis or non-string messages
-            log(f"the message is {msg}")
-            log_error(f"Error processing message: {e}")
-            return
         try:
             if "search" in msg and "user" in msg or "search" in msg and "friend" in msg or "pakihanap" in msg and "si" in msg:
                 self.searchUser(msg=msg, thread_id=thread_id,
@@ -250,7 +265,7 @@ class Facebook_messenger(Client):
                 message_object, author_id=author_id, uid=self.uid)
             if msg:
                 # Perform actions based on the message content
-                save_ongoing_chat(author_id=author_id, mid=mid, msg=msg)
+                self.markAsSeen(thread_id)
                 self.message_proccessing_unit(
                     msg=msg, thread_id=thread_id, thread_type=thread_type)
         except Exception as e:
