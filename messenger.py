@@ -150,7 +150,14 @@ class Facebook_messenger(Client):
     ###################### MESSAGE PROCESS CENTER#############################
 
     def message_proccessing_unit(self, msg: str, thread_id, thread_type):
-        msg = msg.lower()
+        try:
+            if isinstance(msg, str):
+                msg = msg.lower()
+        except Exception as e:
+            # Handle exceptions related to emojis or non-string messages
+            log(f"the message is {msg}")
+            log_error(f"Error processing message: {e}")
+            return
         try:
             if "search" in msg and "user" in msg or "search" in msg and "friend" in msg or "pakihanap" in msg and "si" in msg:
                 self.searchUser(msg=msg, thread_id=thread_id,
