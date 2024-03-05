@@ -51,7 +51,6 @@ except:
     pass
 
 
-
 def chatGPT(query):
     try:
         api = json.load(open("openai_key.json", "r"))
@@ -91,10 +90,14 @@ def chatGPT(query):
 def check_message(message_object, author_id, uid):
     if author_id == uid:
         return None
+
     try:
         if message_object.sticker:
             # Handle sticker
-            return str(message_object.sticker)
+            if hasattr(message_object.sticker, 'is_animated') and message_object.sticker.is_animated:
+                return "Animated Sticker"
+            else:
+                return "Static Sticker"
         elif message_object.attachments:
             for attachment in message_object.attachments:
                 if attachment.type == "video":
@@ -119,8 +122,9 @@ class Facebook_messenger(Client):
             current_cookies = self.getSession()
             log(current_cookies)
         except AttributeError:
-            log_error("Error: 'getSession()' did not return a valid session object.")
-        
+            log_error(
+                "Error: 'getSession()' did not return a valid session object.")
+
     def TypingStatusStart(self, thread_id="", thread_type="", sleep: int = 2):
         self.setTypingStatus(TypingStatus.TYPING,
                              thread_id=thread_id, thread_type=thread_type)
@@ -235,9 +239,13 @@ class Facebook_messenger(Client):
                     pass
             else:
                 # Simulate typing
-                self.setTypingStatus(
-                    TypingStatus.TYPING, thread_id=thread_id, thread_type=thread_type)
+                ignore_message = ['Static Sticker', 'Like']
+                if msg in ignore_message:
+                    return
+
                 if "//video.xx.fbcdn" not in msg:
+                    self.setTypingStatus(
+                        TypingStatus.TYPING, thread_id=thread_id, thread_type=thread_type)
                     reply = mybot.get_response(msg)
                     # Stop simulating typing
                     if len(str(reply)) < 15:
@@ -260,12 +268,12 @@ class Facebook_messenger(Client):
         try:
             if author_id == self.uid:
                 return
+            self.markAsSeen()
             save_ongoing_chat(author_id=author_id, mid=mid, msg=msg)
             msg = check_message(
                 message_object, author_id=author_id, uid=self.uid)
             if msg:
                 # Perform actions based on the message content
-                self.markAsSeen()
                 self.message_proccessing_unit(
                     msg=msg, thread_id=thread_id, thread_type=thread_type)
         except Exception as e:
