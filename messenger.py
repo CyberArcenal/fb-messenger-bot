@@ -265,7 +265,7 @@ class Facebook_messenger(Client):
                 message_object, author_id=author_id, uid=self.uid)
             if msg:
                 # Perform actions based on the message content
-                self.markAsSeen(thread_id)
+                self.markAsSeen()
                 self.message_proccessing_unit(
                     msg=msg, thread_id=thread_id, thread_type=thread_type)
         except Exception as e:
