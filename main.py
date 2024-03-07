@@ -31,7 +31,6 @@ import json
 import time
 import os
 import sys
-import git
 
 #################### SETTINGS ################################
 __check__()
@@ -299,30 +298,6 @@ def home_pick():
     else:
         print("\033[1;92m║ \033[1;91minvalid input")
         home_pick()
-
-def git_check():
-    repo = git.Repo('.')
-    remote = repo.remote()
-
-    # Fetch latest information from remote
-    remote.fetch()
-
-    # Get the current commit hash of the local branch
-    local_commit = repo.head.commit.hexsha
-
-    # Get the current commit hash of the remote branch
-    remote_commit = remote.refs[0].commit.hexsha
-
-    # Check if there are updates on the current branch
-    if local_commit != remote_commit:
-        # I-pull ang mga updates
-        repo.head.reset(index=True, working_tree=True)
-        repo.head.reset(remote_commit, index=True, working_tree=True)
-
-        print("Repository updated.")
-    else:
-        print("Repository is already up-to-date.")
-    time.sleep(2)
 
 if __name__ == "__main__":
     git_check()
