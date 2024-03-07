@@ -300,5 +300,4 @@ def home_pick():
         home_pick()
 
 if __name__ == "__main__":
-    git_check()
     home()
