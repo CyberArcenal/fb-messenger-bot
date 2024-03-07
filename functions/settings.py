@@ -9,9 +9,12 @@ from functions.ck import save_cookies_in_the_list, load_cookies, \
     open_cookie_list, open_cookies, switch_cookiefile
 from functions.logger import log, log_error
 from icecream import ic
-import json, time, sys
+import json
+import time
+import sys
 clr = __clr__()
-FACEBOOK_CLIENT:Client = None
+FACEBOOK_CLIENT: Client = None
+
 
 def pick():
     user_input = input("\033[1;92m╚═════\033[1;91m>>>\033[1;97m ")
@@ -37,12 +40,19 @@ def Switch_Account():
           log("Switching account...")
           time.sleep(2)
           switch_cookiefile(cookie_list["cookies_list"][int(a)]["cookies"])
+          try:
+               os.remove("data/user_info.json")
+          except Exception as e:
+               log_error(e)
+               pass
           return_home()
-   
+
      except Exception as e:
           log_error(e)
           input()
           return_home()
+
+
 def display_cookiefile(cookies):
     os.system(clr)
     print(logo)
@@ -77,105 +87,119 @@ def View_Cookies():
         log_error(e)
         input()
         View_Cookies()
-def settings(client:Client=None):
-     global FACEBOOK_CLIENT
-     if client:
-          FACEBOOK_CLIENT = client
-     os.system(__clr__())
-     print(logo)
-     print(line)
-     try:
-          cookies = json.loads(open("cookies/cookies.json", "r").read())
-          if cookies['c_user'] != "" or cookies['c_user'] != None:
-               pass
-          else:
-               print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
-               print(line)
-     except Exception as e:
-          # log_error(e.args)
-          # print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
-          print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
-          print(line)
-     print("\033[1;92m║ \033[1;91m1. \033[1;94m—> \033[1;92mSwitch Account")
-     print("\033[1;92m║ \033[1;91m2. \033[1;94m—> \033[1;92mView Cookies")
-     print("\033[1;92m║ \033[1;91m3. \033[1;94m—> \033[1;92mReset Bot")
-     print("\033[1;92m║ \033[1;91m4. \033[1;94m—> \033[1;92mLog-out")
-     print("\033[1;92m║ \033[1;91m5. \033[1;94m—> \033[1;92mUpdate")
-     print("\033[1;92m║ \033[1;91m0. \033[1;94m—> \033[1;93mBack")
-     settings_pick()
-     return_home()
+
+
+def settings(client: Client = None):
+    global FACEBOOK_CLIENT
+    if client:
+        FACEBOOK_CLIENT = client
+    os.system(__clr__())
+    print(logo)
+    print(line)
+    try:
+        cookies = json.loads(open("cookies/cookies.json", "r").read())
+        if cookies['c_user'] != "" or cookies['c_user'] != None:
+            pass
+        else:
+            print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
+            print(line)
+    except Exception as e:
+        # log_error(e.args)
+        # print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
+        print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
+        print(line)
+    print("\033[1;92m║ \033[1;91m1. \033[1;94m—> \033[1;92mSwitch Account")
+    print("\033[1;92m║ \033[1;91m2. \033[1;94m—> \033[1;92mView Cookies")
+    print("\033[1;92m║ \033[1;91m3. \033[1;94m—> \033[1;92mReset Bot")
+    print("\033[1;92m║ \033[1;91m4. \033[1;94m—> \033[1;92mLog-out")
+    print("\033[1;92m║ \033[1;91m5. \033[1;94m—> \033[1;92mUpdate")
+    print("\033[1;92m║ \033[1;91m0. \033[1;94m—> \033[1;93mBack")
+    settings_pick()
+    return_home()
+
 
 def return_home():
-     from main import home
-     home() 
+    from main import home
+    home()
+
 
 def reset_bot():
-     print("\033[1;92m║ \033[1;91mAre you sure you want to reset your bot memory?[y/n]")
-     choose = pick()
-     if choose.lower() == "y":
-          print("\033[1;92m║ \033[1;91mDeleting data...")
-          from browser.browser import wait
-          wait()
-          try:
-               os.remove("data/config.json")
-               
-          except Exception as e:
-               log_error(e)
-     else:
-          print("\033[1;92m║ \033[1;92mDelete canceled.")
-          input()
-          return_home()
+    print(
+        "\033[1;92m║ \033[1;91mAre you sure you want to reset your bot memory?[y/n]")
+    choose = pick()
+    if choose.lower() == "y":
+        print("\033[1;92m║ \033[1;91mDeleting data...")
+        from browser.browser import wait
+        wait()
+        try:
+            os.remove("data/config.json")
+
+        except Exception as e:
+            log_error(e)
+    else:
+        print("\033[1;92m║ \033[1;92mDelete canceled.")
+        input()
+        return_home()
+
 
 def remove_current_user(c_user: str):
     data = open_cookie_list()
-    data['cookies_list'] = [i for i in data['cookies_list'] if i['cookies']['c_user'] != c_user]
+    data['cookies_list'] = [i for i in data['cookies_list']
+                            if i['cookies']['c_user'] != c_user]
+    try:
+        os.remove("data/user_info.json")
+    except Exception as e:
+          log_error(e)
+          pass
     with open('cookies/cookiesList.json', 'w') as f:
         json.dump(data, f, indent=4)
 
+
 def log_out():
-     global FACEBOOK_CLIENT
-     cookies = open_cookies()
-     log("Logouting account...")
-     try:
-          if FACEBOOK_CLIENT.logout():
-               remove_current_user(c_user=cookies['c_user'])
-               clear_cookies()
-               input("\033[1;92m║ Logout success.")
-               return_home()
-          else:
-               input("\033[1;92m║ \033[1;93mCan't Logout account.")
-               print("\033[1;92m║ Delete cookies?[y/n]")
-               choose = pick()
-               if choose.lower() == "y":
-                    remove_current_user(c_user=cookies['c_user'])
-                    clear_cookies()
-                    input("\033[1;92m║ remove success.")
-               return_home()
-     except Exception as e:
-          log_error(e)
-          input("\033[1;92m║ \033[1;93mSomething went wrong.")
-          print("\033[1;92m║ Delete cookies?[y/n]")
-          choose = pick()
-          if choose.lower() == "y":
-               remove_current_user(c_user=cookies['c_user'])
-               clear_cookies()
-               input("\033[1;92m║ remove success.")
-          return_home()
+    global FACEBOOK_CLIENT
+    cookies = open_cookies()
+    log("Logouting account...")
+    try:
+        if FACEBOOK_CLIENT.logout():
+            remove_current_user(c_user=cookies['c_user'])
+            clear_cookies()
+            input("\033[1;92m║ Logout success.")
+            return_home()
+        else:
+            input("\033[1;92m║ \033[1;93mCan't Logout account.")
+            print("\033[1;92m║ Delete cookies?[y/n]")
+            choose = pick()
+            if choose.lower() == "y":
+                remove_current_user(c_user=cookies['c_user'])
+                clear_cookies()
+                input("\033[1;92m║ remove success.")
+            return_home()
+    except Exception as e:
+        log_error(e)
+        input("\033[1;92m║ \033[1;93mSomething went wrong.")
+        print("\033[1;92m║ Delete cookies?[y/n]")
+        choose = pick()
+        if choose.lower() == "y":
+            remove_current_user(c_user=cookies['c_user'])
+            clear_cookies()
+            input("\033[1;92m║ remove success.")
+        return_home()
+
 
 def settings_pick():
-     while True:
-          p = pick()
-          if p == "1":
-               Switch_Account()
-          elif p == "2":
-               View_Cookies()
-          elif p == "3":
-               reset_bot()
-          elif p == "4":
-               log_out()
-          elif p == "5":
-               os.system("git pull")
-          elif p == "0":
-               return_home()
-          else:
-               print("\033[1;92m║ \033[1;91minvalid input")
+    while True:
+        p = pick()
+        if p == "1":
+            Switch_Account()
+        elif p == "2":
+            View_Cookies()
+        elif p == "3":
+            reset_bot()
+        elif p == "4":
+            log_out()
+        elif p == "5":
+            os.system("git pull")
+        elif p == "0":
+            return_home()
+        else:
+            print("\033[1;92m║ \033[1;91minvalid input")

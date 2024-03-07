@@ -1,6 +1,6 @@
 import requests
 from fbchat import Client
-version = "1.3.17"
+version = "1.3.19"
 ############################# COLOR#############################
 blue = "\033[1;96m"
 white = "\033[1;97m"
