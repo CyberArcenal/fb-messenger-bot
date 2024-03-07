@@ -120,48 +120,49 @@ def Generate_Cookies():
     login.login()
 
 
+
 def display_account_info():
     global FACEBOOK_CLIENT
     # Get user details
-    user_details = FACEBOOK_CLIENT.fetchUserInfo(FACEBOOK_CLIENT.uid)
-    user = user_details[FACEBOOK_CLIENT.uid]
+    user = get_current_account_info()
     # Print user information
-    print("\r\r\r\033[1;92m║ User ID:", user.uid)
-    print("\033[1;92m║ Name:", user.name)
-    print("\033[1;92m║ First Name:", user.first_name)
-    print("\033[1;92m║ Last Name:", user.last_name)
-
+    print("\r\r\r\033[1;92m║ User ID:", user['uid'])
+    print("\033[1;92m║ Name:", user['name'])
+    print("\033[1;92m║ Chats:", user['message_count'])
 
 
 def start_bot():
     global FACEBOOK_CLIENT
     os.system(clr)
-    # log("Loggining account...")
-    # cookies = json.loads(open("cookies/cookies.json", "r").read())
-    # try:
-    #     FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
-
-    # except Exception as e:
-    #     log_error(e)
-    #     input("\033[1;92m║ \033[1;93mExit.")
-    #     home()
     try:
         log("Checking account..")
-        if FACEBOOK_CLIENT.isLoggedIn():
-            display_account_info()
-            update_and_save_cookies()
-            while True:
-                try:
-                    FACEBOOK_CLIENT.listen()
-                except KeyboardInterrupt:
-                    log("User interrup exiting...")
-                    update_and_save_cookies()
-                    time.sleep(3)
-                    home()
-                except Exception as e:
-                    log_error(f"\033[1;92m║ Error in listening: {e}")
-                    time.sleep(6)
-                    log(f"\033[1;92m║ Reconnecting: {e}")
+        FACEBOOK_CLIENT.isLoggedIn()
+    except:
+        log("Loggining account...")
+        cookies = open_cookies()
+        try:
+            FACEBOOK_CLIENT = Facebook_messenger(
+                "", "", session_cookies=cookies)
+
+        except Exception as e:
+            log_error(e)
+            input("\033[1;92m║ \033[1;93mExit.")
+            home()
+    try:
+        display_account_info()
+        update_and_save_cookies()
+        while True:
+            try:
+                FACEBOOK_CLIENT.listen()
+            except KeyboardInterrupt:
+                log("User interrup exiting...")
+                update_and_save_cookies()
+                time.sleep(3)
+                home()
+            except Exception as e:
+                log_error(f"\033[1;92m║ Error in listening: {e}")
+                time.sleep(6)
+                log(f"\033[1;92m║ Reconnecting: {e}")
     except AttributeError:
         input("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
         home()
@@ -176,6 +177,31 @@ def update_and_save_cookies():
     # Itigil ang client.listen()
     FACEBOOK_CLIENT.stopListening()
 
+def get_current_account_info():
+    global FACEBOOK_CLIENT
+    client = FACEBOOK_CLIENT
+    # Check if user_info.json exists
+    try:
+        with open("data/user_info.json", "r") as f:
+            user_info = json.load(f)
+    except FileNotFoundError:
+        user_info = None
+
+    if not user_info:
+        # Retrieve user details from Facebook
+        try:
+            user_details = client.fetchUserInfo(client.uid)
+            user_info = user_details[client.uid].__dict__
+            user_info['type'] = None
+            with open("data/user_info.json", "w") as f:
+                json.dump(user_info, f, indent=4)
+        except Exception as e:
+            #print(f"Error retrieving user details: {e}")
+            return None
+
+    return user_info
+        
+
 def get_current_user_account_name():
     global FACEBOOK_CLIENT
     # Get user details
@@ -183,27 +209,50 @@ def get_current_user_account_name():
     user = user_details[FACEBOOK_CLIENT.uid]
     return user.name
 
+
 def save_session_cookies(session_cookies: dict = None):
     c = open_cookies()
     if session_cookies:
         save_cookies(cookies=c, session_cookies=session_cookies)
-        save_cookies_in_the_list(session_cookies, account_name=get_current_user_account_name())
+        save_cookies_in_the_list(
+            session_cookies, account_name=get_current_user_account_name())
     else:
         log_error("No session cookies")
 
 
+def save_user_data(data: dict):
+    try:
+        with open("data/user_data.json", "w") as f:
+            json.dump(data, f, indent=4)
+        return True
+    except:
+        return False
+
+def load_user_data():
+    global FACEBOOK_CLIENT
+    log("Loading...")
+    try:
+        user_data = get_current_account_info()
+        if user_data['name']:
+            return True
+    except:
+        cookies = open_cookies()
+        if cookies['c_user'] != "" or cookies['c_user'] != None and FACEBOOK_CLIENT == None:
+            FACEBOOK_CLIENT = Facebook_messenger(
+                        "", "", session_cookies=cookies)
+            update_and_save_cookies()
+            return True
+        else:
+            return False
+
 def home():
     global FACEBOOK_CLIENT
     try:
-        cookies = json.loads(open("cookies/cookies.json", "r").read())
-        if cookies['c_user'] != "" or cookies['c_user'] != None:
-            log("Loading...")
-            FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
+        if load_user_data():
             os.system(clr)
             print(logo)
             print(line)
             display_account_info()
-            update_and_save_cookies()
             print(line)
         else:
             os.system(clr)
@@ -213,7 +262,6 @@ def home():
             print(line)
     except Exception as e:
         log(e)
-        input()
         os.system(clr)
         print(logo)
         print(line)
@@ -239,6 +287,8 @@ def home_pick():
     elif p == "4":
         login()
     elif p == "0":
+        FACEBOOK_CLIENT.stopListening()
+        update_and_save_cookies()
         sys.exit()
     else:
         print("\033[1;92m║ \033[1;91minvalid input")
