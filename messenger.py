@@ -48,12 +48,7 @@ except:
 try:
     import openai
 except:
-    try:
-        os.system("pip install openai")
-        import openai
-    except:
-        pass
-
+    pass
 
 
 def chatGPT(query):
@@ -75,23 +70,50 @@ def chatGPT(query):
         return None
 
 
+# def check_message(message_object, author_id, uid):
+#     if (author_id == uid):
+#         return None
+#     try:
+#         log(message_object)
+#         msg = str(message_object).split(",")[15][14:-1]
+#         print("user chat: ",msg)
+#         if "//video.xx.fbcdn" in msg:
+#             return msg
+#         else:
+#             return str(message_object).split(",")[19][20:-1]
+#     except Exception as e:
+#         try:
+#             msg = message_object.text.lower()
+#             return msg
+#         except:
+#             return None
 def check_message(message_object, author_id, uid):
-    if (author_id == uid):
+    if author_id == uid:
         return None
-    try:
-        msg = str(message_object).split(",")[15][14:-1]
 
-        if "//video.xx.fbcdn" in msg:
-            return msg
+    try:
+        if message_object.sticker:
+            # Handle sticker
+            if hasattr(message_object.sticker, 'is_animated') and message_object.sticker.is_animated:
+                return "Animated Sticker"
+            else:
+                return "Static Sticker"
+        elif message_object.attachments:
+            for attachment in message_object.attachments:
+                if attachment.type == "video":
+                    # Handle video
+                    return f"Video: {attachment.url}"
+                elif attachment.type == "like":
+                    # Handle like
+                    return "Like"
+        elif message_object.text:
+            # Handle text message
+            return message_object.text.lower()
         else:
-            return str(message_object).split(",")[19][20:-1]
-    except Exception as e:
-        try:
-            msg = message_object.text.lower()
-            return msg
-        except Exception as e:
-            print(f"Error in check_message: {e}")
             return None
+    except Exception as e:
+        print(f"Error in check_message: {e}")
+        return None
 
 
 class Facebook_messenger(Client):
@@ -100,8 +122,9 @@ class Facebook_messenger(Client):
             current_cookies = self.getSession()
             log(current_cookies)
         except AttributeError:
-            log_error("Error: 'getSession()' did not return a valid session object.")
-        
+            log_error(
+                "Error: 'getSession()' did not return a valid session object.")
+
     def TypingStatusStart(self, thread_id="", thread_type="", sleep: int = 2):
         self.setTypingStatus(TypingStatus.TYPING,
                              thread_id=thread_id, thread_type=thread_type)
@@ -154,7 +177,6 @@ class Facebook_messenger(Client):
     ###################### MESSAGE PROCESS CENTER#############################
 
     def message_proccessing_unit(self, msg: str, thread_id, thread_type):
-        msg = msg.lower()
         try:
             if "search" in msg and "user" in msg or "search" in msg and "friend" in msg or "pakihanap" in msg and "si" in msg:
                 self.searchUser(msg=msg, thread_id=thread_id,
@@ -217,9 +239,13 @@ class Facebook_messenger(Client):
                     pass
             else:
                 # Simulate typing
-                self.setTypingStatus(
-                    TypingStatus.TYPING, thread_id=thread_id, thread_type=thread_type)
+                ignore_message = ['Static Sticker', 'Like']
+                if msg in ignore_message:
+                    return
+
                 if "//video.xx.fbcdn" not in msg:
+                    self.setTypingStatus(
+                        TypingStatus.TYPING, thread_id=thread_id, thread_type=thread_type)
                     reply = mybot.get_response(msg)
                     # Stop simulating typing
                     if len(str(reply)) < 15:
@@ -242,12 +268,12 @@ class Facebook_messenger(Client):
         try:
             if author_id == self.uid:
                 return
+            self.markAsSeen()
             save_ongoing_chat(author_id=author_id, mid=mid, msg=msg)
             msg = check_message(
                 message_object, author_id=author_id, uid=self.uid)
             if msg:
                 # Perform actions based on the message content
-                save_ongoing_chat(author_id=author_id, mid=mid, msg=msg)
                 self.message_proccessing_unit(
                     msg=msg, thread_id=thread_id, thread_type=thread_type)
         except Exception as e:
