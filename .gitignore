@@ -8,3 +8,4 @@ logs/log_browser.html
 messages.db
 test.py
 *.pyc
+data/user_info.json
