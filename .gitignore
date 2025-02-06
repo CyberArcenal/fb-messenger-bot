@@ -7,3 +7,4 @@ logs/log_data.txt
 logs/log_browser.html
 messages.db
 test.py
+data/config.json
