@@ -135,16 +135,16 @@ def display_account_info():
 
 def start_bot():
     global FACEBOOK_CLIENT
-    os.system(clr)
-    # log("Loggining account...")
-    # cookies = json.loads(open("cookies/cookies.json", "r").read())
-    # try:
-    #     FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
-
-    # except Exception as e:
-    #     log_error(e)
-    #     input("\033[1;92m║ \033[1;93mExit.")
-    #     home()
+    sys.stdout.write("\033[1000D\033[1;92m║ Loggining account...")
+    sys.stdout.flush()
+    cookies = open_cookies() # json.loads(open("cookies/cookies.json", "r").read())
+    try:
+        FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
+    except FBchatUserError:
+        log_error(f"\033[1;92m║ Account login error please login again.")
+        input("Return: Enter")
+        home()
+    display_account_info(client=FACEBOOK_CLIENT)
     try:
         log("Checking account..")
         if FACEBOOK_CLIENT.isLoggedIn():
