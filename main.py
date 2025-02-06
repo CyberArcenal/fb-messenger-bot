@@ -44,6 +44,7 @@ def pick():
     user_input = input("\033[1;92m╚═════\033[1;91m>>>\033[1;97m ")
     return str(user_input)
 
+
 def login_with_cookies():
     dict_list = ["sb", "fr", "c_user", "datr", "xs"]
     os.system(clr)
@@ -67,6 +68,7 @@ def login_with_cookies():
         input()
         home()
 
+
 def get_cookie_input(cookie_name: str):
     while True:
         a = pick()
@@ -76,7 +78,8 @@ def get_cookie_input(cookie_name: str):
         elif a == "exit":
             home()
         else:
-            return a        
+            return a
+
 
 def login():
     os.system(clr)
@@ -117,16 +120,17 @@ def Generate_Cookies():
     login.login()
 
 
-def display_account_info(client: Client):
+def display_account_info():
+    global FACEBOOK_CLIENT
     # Get user details
-    user_details = client.fetchUserInfo(client.uid)
-    user = user_details[client.uid]
-
+    user_details = FACEBOOK_CLIENT.fetchUserInfo(FACEBOOK_CLIENT.uid)
+    user = user_details[FACEBOOK_CLIENT.uid]
     # Print user information
-    print("\r\r\r\033[1;92m║User ID:", user.uid)
-    print("\033[1;92m║Name:", user.name)
-    print("\033[1;92m║First Name:", user.first_name)
-    print("\033[1;92m║Last Name:", user.last_name)
+    print("\r\r\r\033[1;92m║ User ID:", user.uid)
+    print("\033[1;92m║ Name:", user.name)
+    print("\033[1;92m║ First Name:", user.first_name)
+    print("\033[1;92m║ Last Name:", user.last_name)
+
 
 
 def start_bot():
@@ -142,12 +146,16 @@ def start_bot():
         home()
     display_account_info(client=FACEBOOK_CLIENT)
     try:
+        log("Checking account..")
         if FACEBOOK_CLIENT.isLoggedIn():
+            display_account_info()
+            update_and_save_cookies()
             while True:
                 try:
                     FACEBOOK_CLIENT.listen()
                 except KeyboardInterrupt:
                     log("User interrup exiting...")
+                    update_and_save_cookies()
                     time.sleep(3)
                     home()
                 except Exception as e:
@@ -159,20 +167,58 @@ def start_bot():
         home()
 
 
+def update_and_save_cookies():
+    global FACEBOOK_CLIENT
+    log("Saving session.")
+    # I-save ang current cookies
+    current_cookies = FACEBOOK_CLIENT.getSession()
+    save_session_cookies(session_cookies=current_cookies)
+    # Itigil ang client.listen()
+    FACEBOOK_CLIENT.stopListening()
+
+def get_current_user_account_name():
+    global FACEBOOK_CLIENT
+    # Get user details
+    user_details = FACEBOOK_CLIENT.fetchUserInfo(FACEBOOK_CLIENT.uid)
+    user = user_details[FACEBOOK_CLIENT.uid]
+    return user.name
+
+def save_session_cookies(session_cookies: dict = None):
+    c = open_cookies()
+    if session_cookies:
+        save_cookies(cookies=c, session_cookies=session_cookies)
+        save_cookies_in_the_list(session_cookies, account_name=get_current_user_account_name())
+    else:
+        log_error("No session cookies")
+
+
 def home():
-    os.system(clr)
-    print(logo)
-    print(line)
+    global FACEBOOK_CLIENT
     try:
         cookies = json.loads(open("cookies/cookies.json", "r").read())
         if cookies['c_user'] != "" or cookies['c_user'] != None:
-            pass
+            
+            if FACEBOOK_CLIENT == None:
+                log("Loading...")
+                FACEBOOK_CLIENT = Facebook_messenger("", "", session_cookies=cookies)
+            else:
+                log("Already login")
+            os.system(clr)
+            print(logo)
+            print(line)
+            display_account_info()
+            update_and_save_cookies()
+            print(line)
         else:
+            os.system(clr)
+            print(logo)
+            print(line)
             print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
             print(line)
     except Exception as e:
-        # log_error(e.args)
-        # print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
+        os.system(clr)
+        print(logo)
+        print(line)
         print("\r\r\r\033[1;92m║ \033[1;91mNo Account Logged.")
         print(line)
     print("\033[1;92m║ \033[1;91m1. \033[1;94m—> \033[1;92mStart Chat-Bot")
@@ -184,13 +230,14 @@ def home():
 
 
 def home_pick():
+    global FACEBOOK_CLIENT
     p = pick()
     if p == "1":
         start_bot()
     elif p == "2":
         bot_manager()
     elif p == "3":
-        settings()
+        settings(client=FACEBOOK_CLIENT)
     elif p == "4":
         login()
     elif p == "0":

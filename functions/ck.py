@@ -6,40 +6,63 @@ from requests import Response
 from icecream import ic
 from .logger import log, log_error
 
+
 def switch_cookiefile(cookies: dict):
     with open("cookies/cookies.json", "w") as cf:
         json.dump(cookies, cf, indent=4)
 
-def save_cookies_in_the_list(cookies: dict, account_name: str):
+
+def user_already_exist(c_user: str) -> bool:
+    c = open_cookie_list()
+    exist = False
+    for i in c['cookies_list']:
+        ck = i['cookies']['c_user']
+        if ck == c_user:  # Use == for string comparison
+            exist = True
+    return exist
+
+
+
+def update_user(cookies: dict, account_name: str):
     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    try:
-        with open("cookies/cookiesList.json", "r") as file:
-            data = json.load(file)
-    except FileNotFoundError:
-        data = {"cookies_list": []}
-
-    entry = {
-        "account": str(account_name),
-        "cookies": cookies,
-        "date_logged": str(current_time)
-    }
-
-    data['cookies_list'].append(entry)
-
+    data = open_cookie_list()
+    for i in data['cookies_list']:
+        if str(i['cookies']['c_user']) == str(cookies['c_user']):
+            i['cookies'].update(cookies)
+            i['date_logged'] = str(current_time)
+            i['account'] = account_name
     with open('cookies/cookiesList.json', 'w') as f:
         json.dump(data, f, indent=4)
 
-    return True
+
+def save_cookies_in_the_list(cookies: dict, account_name: str):
+    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    data = open_cookie_list()
+    if user_already_exist(c_user=cookies['c_user']):
+        update_user(cookies=cookies, account_name=account_name)
+        return True
+    else:
+        entry = {
+            "account": str(account_name),
+            "cookies": cookies,
+            "date_logged": str(current_time)
+        }
+        data['cookies_list'].append(entry)
+        with open('cookies/cookiesList.json', 'w') as f:
+            json.dump(data, f, indent=4)
+        return True
 
 
-def save_cookies(cookies: dict, header: Response):
+def save_cookies(cookies: dict = None, header: Response = None, session_cookies: dict = None):
     try:
         os.mkdir("cookies")
     except OSError:
         pass
-    for i in header.cookies:
-        cookies[i.name] = i.value
+    if header:
+        for i in header.cookies:
+            cookies[i.name] = i.value
+    elif not header and session_cookies:
+        cookies.update(session_cookies)
     with open("cookies/cookies.json", "w") as cf:
         json.dump(cookies, cf, indent=4)
     return True
@@ -62,7 +85,7 @@ def load_cookies(account_name: str):
     clean_cookie()
     with open("cookies/cookies.json", "r") as c:
         cookies = json.loads(c.read())
-        #ic(cookies)
+        # ic(cookies)
         save_cookies_in_the_list(cookies=cookies, account_name=account_name)
     # print(f"{yellow}You can open cookies in {green}cookies/cookies.json{green}\nor you can open view cookies to display list of cookies.")
 
