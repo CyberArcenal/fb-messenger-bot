@@ -150,12 +150,12 @@ class Facebook_messenger(Client):
             if "search" in msg and "user" in msg or "search" in msg and "friend" in msg or "pakihanap" in msg and "si" in msg:
                 self.searchUser(msg=msg, thread_id=thread_id,
                                 thread_type=thread_type)
-            elif ("chatgpt" in msg or "darius ai" in msg or "darius" and "ai" in msg):
-                for word in ["chatgpt", "darius ai", "darius", "ai"]:
+            elif ("chatgpt" in msg or "ai" in msg):
+                for word in ["chatgpt", "ai"]:
                     msg = msg.replace(word, "")
                 reply = chatGPT(msg)
                 if reply is not None:
-                    reply = f"Darius AI: {reply}"
+                    reply = f"AI: {reply}"
                     self.send(Message(text=reply), thread_id=thread_id,
                               thread_type=thread_type)
             elif ("download youtube" in msg.lower()):

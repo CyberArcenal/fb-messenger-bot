@@ -6,3 +6,6 @@ logs/log_data.txt
 logs/log_browser.html
 messages.db
 test.py
+*.pyc
+*.pyc
+/functions/__pycache__
